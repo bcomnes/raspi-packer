@@ -1,0 +1,17 @@
+sudo: false
+dist: xenial
+language: go
+cache:
+  directories:
+    - ~/.go
+addons:
+  apt:
+    packages:
+      - kpartx
+      - qemu-user-static
+install:
+  - ./build-plugin.sh
+script:
+  - ./packer build arch-raspi.json
+after_success:
+  - ls -la

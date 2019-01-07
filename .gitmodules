@@ -1,3 +1,0 @@
-[submodule "packer-builder-arm-image"]
-	path = packer-builder-arm-image
-	url = git@github.com:solo-io/packer-builder-arm-image.git
