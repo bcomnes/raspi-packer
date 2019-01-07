@@ -1,4 +1,3 @@
-sudo: false
 dist: xenial
 language: go
 go:
@@ -14,6 +13,6 @@ addons:
 install:
   - ./build-packer.sh
 script:
-  - ./packer build arch-raspi.json
+  - sudo ./packer build arch-raspi.json
 after_success:
   - ls -la
