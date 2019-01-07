@@ -5,6 +5,7 @@ go:
 cache:
   directories:
     - ~/.go
+    - ./packer_cache
 addons:
   apt:
     packages:
