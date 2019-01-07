@@ -10,7 +10,7 @@ addons:
       - kpartx
       - qemu-user-static
 install:
-  - ./build-plugin.sh
+  - ./build-packer.sh
 script:
   - ./packer build arch-raspi.json
 after_success:
