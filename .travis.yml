@@ -11,8 +11,8 @@ addons:
     packages:
       - kpartx
       - qemu-user-static
-      - bsdtar
 install:
+  - sudo ./build-bsdtar.sh
   - ./build-packer.sh
 script:
   - sudo ./build-img.sh
