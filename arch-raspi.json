@@ -2,7 +2,7 @@
   "builders": [{
     "type": "arm-image",
     "iso_url" : "./arch-linux.img",
-    "image_type": "raspberrypi",
+    "iso_checksum_type": "none",
     "image_mounts": ["/boot", "/"]
   }],
   "provisioners": []
