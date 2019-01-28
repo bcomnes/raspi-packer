@@ -3,7 +3,7 @@ losetup /dev/loop0 && exit 1 || true
 image=arch-linux.img
 archive=ArchLinuxARM-rpi-3-latest.tar.gz
 url=http://os.archlinuxarm.org/os/$archive
-wget -q -N $url
+wget -N $url
 truncate -s 1G $image
 losetup /dev/loop0 $image
 parted -s /dev/loop0 mklabel msdos
@@ -14,6 +14,7 @@ parted -s /dev/loop0 print
 mkfs.vfat -I -n SYSTEM /dev/loop0p1
 mkfs.ext4 -F -L root -b 4096 -E stride=4,stripe_width=1024 /dev/loop0p2
 mkdir -p root
+touch root/delete-me.txt
 mount /dev/loop0p2 root
 bsdtar xfz $archive -C root
 mv root/boot root/boot-temp
