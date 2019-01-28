@@ -14,6 +14,6 @@ addons:
 install:
   - ./build-packer.sh
 script:
-  - sudo ./packer build arch-raspi.json
-after_success:
+  - sudo ./build-img.sh
+  # - sudo ./packer build arch-raspi.json
   - ls -la
