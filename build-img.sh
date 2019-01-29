@@ -4,7 +4,7 @@ image=arch-linux.img
 archive=ArchLinuxARM-rpi-3-latest.tar.gz
 url=http://os.archlinuxarm.org/os/$archive
 wget -N $url
-truncate -s 1G $image
+truncate -s 2G $image
 losetup /dev/loop0 $image
 parted -s /dev/loop0 mklabel msdos
 parted -s /dev/loop0 unit s mkpart primary fat32 -- 1 65535
