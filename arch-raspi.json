@@ -5,5 +5,10 @@
     "iso_checksum_type": "none",
     "image_mounts": ["/boot", "/"]
   }],
-  "provisioners": []
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": [ "./bootstrap.sh" ]
+    }
+  ]
 }
