@@ -1,8 +1,9 @@
 {
   "builders": [{
     "type": "arm-image",
-    "iso_url" : "./arch-linux.img",
-    "iso_checksum_type": "none",
+    "iso_url" : "https://github.com/bcomnes/archlinux-arm-img/releases/download/untagged-27ec0ea5881e75646da8/ArchLinuxARM-rpi-3-latest.img",
+    "iso_checksum_type":"md5",
+    "iso_checksum_url":"https://github.com/bcomnes/archlinux-arm-img/releases/download/untagged-27ec0ea5881e75646da8/ArchLinuxARM-rpi-3-latest.img.md5",
     "image_mounts": ["/boot", "/"]
   }],
   "provisioners": [

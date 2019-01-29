@@ -1,5 +1,7 @@
 #!/bin/bash
 # bret-mbr:sbc-bootstrap bret$ ssh bret@192.168.1.12
+pacman-key --init
+pacman-key --populate archlinuxarm
 timedatectl set-ntp true
 
 pacman -S git etckeeper --noconfirm --needed

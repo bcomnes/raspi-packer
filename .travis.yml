@@ -12,9 +12,7 @@ addons:
       - kpartx
       - qemu-user-static
 install:
-  - sudo ./build-bsdtar.sh
   - ./build-packer.sh
 script:
-  - sudo ./build-img.sh
   - sudo ./packer build arch-raspi.json
   - ls -la
