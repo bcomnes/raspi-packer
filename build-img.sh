@@ -15,13 +15,13 @@ mkfs.vfat -I -n SYSTEM /dev/loop0p1
 mkfs.ext4 -F -L root -b 4096 -E stride=4,stripe_width=1024 /dev/loop0p2
 mkdir -p root
 mount /dev/loop0p2 root
-touch root/delete-me.txt
-ls -la root
-bsdtar xfz $archive -C root
-mv root/boot root/boot-temp
+mkdir -p tmp
+bsdtar xfz $archive -C tmp
+mv tmp/boot tmp/boot-temp
+mv tmp/* root/
 mkdir -p root/boot
 mount /dev/loop0p1 root/boot
-mv root/boot-temp/* root/boot/
+mv tmp/boot-temp/* root/boot/
 rm -rf root/boot-temp
 sed -i "s/ defaults / defaults,noatime /" root/etc/fstab
 umount root/boot root
