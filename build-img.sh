@@ -7,9 +7,9 @@ wget -N $url
 truncate -s 2G $image
 losetup /dev/loop0 $image
 parted -s /dev/loop0 mklabel msdos
-parted -s /dev/loop0 unit s mkpart primary fat32 -- 1 65535
+parted -s /dev/loop0 unit mb mkpart primary fat32 -- 0 100
 parted -s /dev/loop0 set 1 boot on
-parted -s /dev/loop0 unit s mkpart primary ext2 -- 65536 -1
+parted -s /dev/loop0 unit mb mkpart primary ext2 -- 100 -1
 parted -s /dev/loop0 print
 mkfs.vfat -I -n SYSTEM /dev/loop0p1
 mkfs.ext4 -F -L root -b 4096 -E stride=4,stripe_width=1024 /dev/loop0p2
