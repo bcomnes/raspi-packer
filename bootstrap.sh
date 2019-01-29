@@ -1,4 +1,4 @@
-
+#!/bin/bash
 # bret-mbr:sbc-bootstrap bret$ ssh bret@192.168.1.12
 timedatectl set-ntp true
 
