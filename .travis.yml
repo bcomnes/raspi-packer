@@ -6,6 +6,8 @@ cache:
   directories:
     - $GOPATH
     - ./packer_cache
+env:
+  - GOPROXY=https://microsoftgoproxy.azurewebsites.net/
 addons:
   apt:
     packages:
