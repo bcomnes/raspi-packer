@@ -16,3 +16,4 @@ install:
 script:
   - sudo ./packer build arch-raspi.json
   - ls -la
+  - ls -la ~/
