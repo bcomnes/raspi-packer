@@ -7,8 +7,9 @@ cache:
     - $GOPATH
     - ./packer_cache
 env:
-  - GO111MODULE=on
-  - GOPROXY=https://proxy.golang.org
+  global:
+    - GO111MODULE=on
+    - GOPROXY=https://proxy.golang.org
 addons:
   apt:
     packages:
