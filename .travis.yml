@@ -1,13 +1,14 @@
 dist: xenial
 language: go
 go:
-  - "1.11.x"
+  - stable
 cache:
   directories:
     - $GOPATH
     - ./packer_cache
 env:
-  - GOPROXY=https://microsoftgoproxy.azurewebsites.net/
+  - GO111MODULE=on
+  - GOPROXY=https://proxy.golang.org
 addons:
   apt:
     packages:
