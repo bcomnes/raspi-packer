@@ -1,9 +1,9 @@
 {
   "builders": [{
     "type": "arm-image",
-    "iso_url" : "https://github.com/bcomnes/archlinux-arm-img/releases/download/2019-01-30-003/ArchLinuxARM-rpi-3-latest.zip",
+    "iso_url" : "https://github.com/bcomnes/archlinux-arm-img/releases/download/2019-01-30-006/ArchLinuxARM-rpi-3-latest.zip",
     "iso_checksum_type":"md5",
-    "iso_checksum_url":"https://github.com/bcomnes/archlinux-arm-img/releases/download/2019-01-30-003/ArchLinuxARM-rpi-3-latest.zip.md5",
+    "iso_checksum_url":"https://github.com/bcomnes/archlinux-arm-img/releases/download/2019-01-30-006/ArchLinuxARM-rpi-3-latest.zip.md5",
     "image_type": "raspberrypi",
     "image_mounts": ["/boot", "/"]
   }],
