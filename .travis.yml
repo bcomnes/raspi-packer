@@ -4,7 +4,8 @@ go:
   - stable
 cache:
   directories:
-    - $GOPATH
+    - $HOME/.cache/go-build
+    - $GOPATH/pkg/mod
     - ./packer_cache
 env:
   global:
