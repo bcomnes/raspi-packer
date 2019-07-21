@@ -9,7 +9,6 @@ cache:
     - ./packer_cache
 env:
   global:
-    - GO111MODULE=on
     - GOPROXY=https://proxy.golang.org
 addons:
   apt:
