@@ -10,5 +10,5 @@
   "provisioners": [{
     "type": "shell",
     "script": "bootstrap.sh"
-  }],
+  }]
 }
