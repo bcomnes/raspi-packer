@@ -15,6 +15,6 @@ jobs:
     with:
       go-version: '^1.14.1' # The Go version to download (if necessary) and use.
   - name: install packer + plugins + deps
-      run: |
-        sudo apt install kpartx qemu-user-static
-        ./build-packer.sh
+    run: |
+      sudo apt install kpartx qemu-user-static
+      ./build-packer.sh
