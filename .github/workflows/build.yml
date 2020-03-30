@@ -18,4 +18,4 @@ jobs:
   - name: install packer + plugins + deps
     run: |
       sudo apt install kpartx qemu-user-static
-      ./build-packer.sh
+      ./build-packer.sh ${{ env.PACKER_VERSION }}
