@@ -19,3 +19,7 @@ jobs:
     - name: install packer and plugins
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }} ${{ env.ARM_BUILDER_VERSION }}
+    - name: run packer
+      run: |
+        sudo ./packer build arch-raspi.json
+        ls -la
