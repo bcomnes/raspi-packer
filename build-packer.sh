@@ -15,6 +15,8 @@ echo "Finished building packer"
 echo "downloading solo-io/packer-builder-arm-image"
 wget -q "https://github.com/solo-io/packer-builder-arm-image/releases/download/v${ARM_BUILDER_VERSION}/packer-builder-arm-image"
 wget -q "https://github.com/solo-io/packer-builder-arm-image/releases/download/v${ARM_BUILDER_VERSION}/flasher"
+chmod +x ./packer-builder-arm-image
+chmod +x ./flasher
 echo "Finished building solo-io/packer-builder-arm-image"
 
 ls -la
