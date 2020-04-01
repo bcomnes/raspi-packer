@@ -1,15 +1,45 @@
 {
+  "variables": {},
   "builders": [{
-    "type": "arm-image",
-    "iso_url" : "https://github.com/bcomnes/archlinux-arm-img/releases/download/2020-03-30-003/ArchLinuxARM-rpi-3-latest.zip",
-    "iso_checksum_type":"md5",
-    "iso_checksum_url":"https://github.com/bcomnes/archlinux-arm-img/releases/download/2020-03-30-003/ArchLinuxARM-rpi-3-latest.zip.md5",
-    "image_type": "raspberrypi",
-    "image_mounts": ["/boot", "/"],
-    "qemu_binary": "qemu-aarch64-static"
+    "type": "arm",
+    "file_urls" : ["http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz"],
+    "file_checksum_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz.md5",
+    "file_checksum_type": "md5",
+    "file_unarchive_cmd": ["bsdtar", "-xpf", "$ARCHIVE_PATH", "-C", "$MOUNTPOINT"],
+    "file_target_extension": "tar.gz",
+    "image_build_method": "new",
+    "image_path": "raspberry-pi3.img",
+    "image_size": "8G",
+    "image_type": "dos",
+    "image_partitions": [
+      {
+        "name": "boot",
+        "type": "c",
+        "start_sector": "8192",
+        "filesystem": "vfat",
+        "size": "256M",
+        "mountpoint": "/boot"
+      },
+      {
+        "name": "root",
+        "type": "83",
+        "start_sector": "532480",
+        "filesystem": "ext4",
+        "size": "0",
+        "mountpoint": "/"
+      }
+    ],
+    "qemu_binary_source_path": "/usr/bin/qemu-aarch64-static",
+    "qemu_binary_destination_path": "/usr/bin/qemu-aarch64-static"
   }],
-  "provisioners": [{
-    "type": "shell",
-    "script": "bootstrap.sh"
-  }]
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "touch /tmp/test",
+        "pacman-key --init",
+        "pacman-key --populate archlinuxarm"
+      ]
+    }
+  ]
 }
