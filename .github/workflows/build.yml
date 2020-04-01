@@ -25,7 +25,7 @@ jobs:
         sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
     - name: install deps
       run: |
-        sudo apt install qemu-user-static util-linux gdisk e2fsprogs bsdtar
+        sudo apt install qemu-user-static util-linux gdisk e2fsprogs
     - name: install packer and plugins
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
