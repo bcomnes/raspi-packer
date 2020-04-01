@@ -6,6 +6,5 @@ package tools
 // for more details
 
 import (
-	_ "github.com/hashicorp/packer"
 	_ "github.com/mkaczanowski/packer-builder-arm"
 )
