@@ -16,7 +16,7 @@ jobs:
         go-version: '^1.14.1'
     - name: install deps
       run: |
-        sudo apt install qemu-user-static util-linux gdisk e2fsprogs
+        sudo apt install qemu-user-static util-linux gdisk e2fsprogs bsdtar
     - name: install packer and plugins
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
