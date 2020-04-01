@@ -4,6 +4,7 @@ on: [push]
 
 env:
   PACKER_VERSION: 1.4.4
+  LIBARCHIVE_VERSION: 3.4.2
 
 jobs:
   build:
@@ -14,6 +15,14 @@ jobs:
     - uses: actions/setup-go@v2-beta
       with:
         go-version: '^1.14.1'
+    - name: Cache libarchive build
+      uses: actions/cache@v1
+      with:
+        path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
+        key: libarchive-${{env.LIBARCHIVE_VERSION}}
+    - name: install libarchive
+      run: |
+        sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
     - name: install deps
       run: |
         sudo apt install qemu-user-static util-linux gdisk e2fsprogs bsdtar
