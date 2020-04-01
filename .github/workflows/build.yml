@@ -3,7 +3,7 @@ name: build
 on: [push]
 
 env:
-  PACKER_VERSION: 1.5.5
+  PACKER_VERSION: 1.4.4
 
 jobs:
   build:
