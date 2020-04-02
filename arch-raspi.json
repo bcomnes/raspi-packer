@@ -38,10 +38,11 @@
       "inline": [
         "pacman-key --init",
         "pacman-key --populate archlinuxarm",
+        "echo foo > /etc/bar",
         "echo 8.8.8.8 > /etc/resolv.conf",
         "ping -c 4 google.com",
         "pacman -Sy --noconfirm --needed"
       ]
     }
-  ],
+  ]
 }
