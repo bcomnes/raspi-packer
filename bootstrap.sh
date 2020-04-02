@@ -1,13 +1,19 @@
 #!/bin/bash
 # bret-mbr:sbc-bootstrap bret$ ssh bret@192.168.1.12
+set -e
+set -x
+
+source /etc/profile
+source ~/.bashrc
+
 pacman-key --init
 pacman-key --populate archlinuxarm
-timedatectl set-ntp true
+# timedatectl set-ntp true
 
-networkctl status
-dig google.com
+#networkctl status
+#dig google.com
 
-pacman -Syu --noconfirm --needed
+pacman -Sy --noconfirm --needed
 pacman -S git etckeeper --noconfirm --needed
 git config --global user.email "bcomnes@gmail.com"
 git config --global user.name "Bret Comnes"
