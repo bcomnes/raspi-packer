@@ -18,7 +18,7 @@ sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
-hostnamectl set-hostname raspi3-1
+hostnamectl set-hostname raspi3
 
 pacman -S vim htop sudo avahi nss-mdns --noconfirm --needed
 
