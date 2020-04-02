@@ -8,7 +8,7 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
-whoami
+whoam
 
 #networkctl status
 #dig google.com
@@ -17,9 +17,8 @@ ls -la /etc
 
 
 systemctl stop systemd-resolved.service
-cat /etc/resolv.conf
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-cat /etc/resolv.conf
+echo "nameserver 8.8.8.8" > /run/systemd/resolve/resolv.conf
+cat /run/systemd/resolve/resolv.conf
 ping -c 4 google.com
 
 pacman -Sy --noconfirm --needed
