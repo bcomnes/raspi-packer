@@ -42,7 +42,8 @@
         "echo foo > /etc/bar",
         "ls -la /etc",
         "ls -la /run/systemd/resolve/",
-        "echo 8.8.8.8 > /etc/resolv.conf",
+        "rm -f /etc/resolv.conf",
+        "echo 'nameserver 8.8.8.8' > /etc/resolv.conf",
         "ping -c 4 google.com",
         "pacman -Sy --noconfirm --needed"
       ]
