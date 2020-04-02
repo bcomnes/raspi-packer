@@ -9,6 +9,11 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
+systemctl --no-pager
+systemctl status --no-pager
+systemctl status systemd-resolved --no-pager
+
+
 #networkctl status
 #dig google.com
 cat /etc/resolv.conf
