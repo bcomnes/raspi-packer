@@ -25,6 +25,16 @@ jobs:
       with:
         path: ./packer_cache
         key: ./packer_cache-1
+    - name: Cache go mod
+      uses: actions/cache@v1
+      with:
+        path: ~/go/pkg/mod
+        key: go-mod-1
+    - name: Cache go build
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/go-build
+        key: go-build-1
     - name: install libarchive
       run: |
         sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
