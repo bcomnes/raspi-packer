@@ -11,6 +11,7 @@ pacman-key --populate archlinuxarm
 
 #networkctl status
 #dig google.com
+systemctl stop systemd-resolved.service
 
 pacman -Sy --noconfirm --needed
 pacman -S git etckeeper --noconfirm --needed
