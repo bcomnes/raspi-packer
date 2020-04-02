@@ -2,7 +2,7 @@
 set -e
 set -x
 
-# source /etc/profile
+source /etc/profile
 
 pacman-key --init
 pacman-key --populate archlinuxarm
@@ -14,8 +14,15 @@ echo 'nameserver 8.8.8.8' > /etc/resolv.conf
 pacman -Sy --noconfirm --needed
 
 pacman -S git etckeeper --noconfirm --needed
+
 git config --global user.email "bcomnes@gmail.com"
 git config --global user.name "Bret Comnes"
+# cat > /root/.gitconfig <<- EOM
+# [user]
+#   email = bcomnes@gmail.com
+#   name = Bret Comnes
+# EOM
+
 etckeeper init
 cd /etc
 git add -A
