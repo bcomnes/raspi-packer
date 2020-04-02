@@ -32,12 +32,8 @@
     "qemu_binary_source_path": "/usr/bin/qemu-aarch64-static",
     "qemu_binary_destination_path": "/usr/bin/qemu-aarch64-static"
   }],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "touch /tmp/test"
-      ]
-    }
-  ]
+  "provisioners": [{
+    "type": "shell",
+    "script": "bootstrap.sh"
+  }]
 }
