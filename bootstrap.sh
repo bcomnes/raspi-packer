@@ -11,7 +11,11 @@ pacman-key --populate archlinuxarm
 
 #networkctl status
 #dig google.com
+ls -la /
+
 systemctl stop systemd-resolved.service
+mkdir -p /etc
+touch /etc/resolv.conf
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 cat /etc/resolv.conf
 ping -c 4 google.com
