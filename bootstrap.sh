@@ -2,7 +2,7 @@
 set -e
 set -x
 
-source /etc/profile
+# source /etc/profile
 
 pacman-key --init
 pacman-key --populate archlinuxarm
