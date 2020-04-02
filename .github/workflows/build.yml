@@ -20,6 +20,11 @@ jobs:
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
         key: libarchive-${{env.LIBARCHIVE_VERSION}}
+    - name: Cache images
+      uses: actions/cache@v1
+      with:
+        path: ./packer_cache
+        key: ./packer_cache-1
     - name: install libarchive
       run: |
         sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
