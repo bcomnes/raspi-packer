@@ -4,7 +4,6 @@ set -e
 set -x
 
 source /etc/profile
-source /root/.bashrc
 
 pacman-key --init
 pacman-key --populate archlinuxarm
