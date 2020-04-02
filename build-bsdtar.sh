@@ -7,6 +7,8 @@ set -x
 
 VERSION="$1"
 
+ls -la
+
 if [[ ! -d "./libarchive-${VERSION}" || ! -f "./libarchive-${VERSION}/Makefile" ]]; then
   wget -q "https://www.libarchive.org/downloads/libarchive-${VERSION}.tar.gz";
   tar xzf "libarchive-${VERSION}.tar.gz"
