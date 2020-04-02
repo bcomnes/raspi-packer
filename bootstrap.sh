@@ -9,14 +9,9 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
-systemctl --no-pager
-systemctl status --no-pager
-systemctl status systemd-resolved --no-pager
-
-
 #networkctl status
 #dig google.com
-cat /etc/resolv.conf
+ip link show
 systemctl stop systemd-resolved.service
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 cat /etc/resolv.conf
