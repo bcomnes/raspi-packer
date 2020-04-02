@@ -33,3 +33,8 @@ jobs:
       run: |
         sudo ./packer build arch-raspi.json
         ls -la
+        zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
+    - uses: actions/upload-artifact@v1
+      with:
+        name: raspberry-pi3.img.zip
+        path: raspberry-pi3.img.zip
