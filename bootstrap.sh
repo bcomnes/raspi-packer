@@ -11,7 +11,10 @@ pacman-key --populate archlinuxarm
 
 #networkctl status
 #dig google.com
+cat /etc/resolv.conf
 systemctl stop systemd-resolved.service
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+cat /etc/resolv.conf
 
 pacman -Sy --noconfirm --needed
 pacman -S git etckeeper --noconfirm --needed
