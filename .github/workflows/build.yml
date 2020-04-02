@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # CODE
     - uses: actions/checkout@v2
+    # TOOLS
     - uses: actions/setup-go@v2-beta
       with:
         go-version: '^1.14.1'
+    # Caches
     - name: Cache libarchive build
       uses: actions/cache@v1
       with:
@@ -35,6 +38,8 @@ jobs:
       with:
         path: ~/.cache/go-build
         key: go-build-1
+
+    # Installs
     - name: install libarchive
       run: |
         sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
@@ -44,11 +49,15 @@ jobs:
     - name: install packer and plugins
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
+
+    # Build
     - name: run packer
       run: |
         sudo ./packer build arch-raspi.json
         ls -la
         zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
+
+    # Upload
     - uses: actions/upload-artifact@v1
       with:
         name: raspberry-pi3.img.zip
