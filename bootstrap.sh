@@ -8,10 +8,13 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
+whoami
+
 #networkctl status
 #dig google.com
 ls -la /
 ls -la /etc
+
 
 systemctl stop systemd-resolved.service
 cat /etc/resolv.conf
