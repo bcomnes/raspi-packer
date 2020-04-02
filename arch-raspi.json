@@ -38,10 +38,6 @@
       "inline": [
         "pacman-key --init",
         "pacman-key --populate archlinuxarm",
-        "resolvectl --no-pager",
-        "echo foo > /etc/bar",
-        "ls -la /etc",
-        "ls -la /run/systemd/resolve/",
         "rm -f /etc/resolv.conf",
         "echo 'nameserver 8.8.8.8' > /etc/resolv.conf",
         "ping -c 4 google.com",
