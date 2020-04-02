@@ -32,17 +32,8 @@
     "qemu_binary_source_path": "/usr/bin/qemu-aarch64-static",
     "qemu_binary_destination_path": "/usr/bin/qemu-aarch64-static"
   }],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "pacman-key --init",
-        "pacman-key --populate archlinuxarm",
-        "rm -f /etc/resolv.conf",
-        "echo 'nameserver 8.8.8.8' > /etc/resolv.conf",
-        "ping -c 4 google.com",
-        "pacman -Sy --noconfirm --needed"
-      ]
-    }
-  ]
+  "provisioners": [{
+    "type": "shell",
+    "script": "bootstrap.sh"
+  }]
 }
