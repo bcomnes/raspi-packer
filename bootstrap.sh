@@ -4,6 +4,10 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 timedatectl set-ntp true
 
+networkctl status
+dig google.com
+
+pacman -Syu --noconfirm --needed
 pacman -S git etckeeper --noconfirm --needed
 git config --global user.email "bcomnes@gmail.com"
 git config --global user.name "Bret Comnes"
