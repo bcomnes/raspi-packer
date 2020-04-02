@@ -16,7 +16,7 @@ ls -la /
 ls -la /etc
 
 
-systemctl stop systemd-resolved.service
+# systemctl stop systemd-resolved.service
 echo "nameserver 8.8.8.8" > /run/systemd/resolve/resolv.conf
 cat /run/systemd/resolve/resolv.conf
 ping -c 4 google.com
