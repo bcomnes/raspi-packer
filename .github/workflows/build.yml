@@ -18,26 +18,32 @@ jobs:
       with:
         go-version: '^1.14.1'
     # Caches
+    - name: Current Month Var
+      run: |
+        echo "::set-output name=date::$(date +'%m-%Y')"
+      id: cache
     - name: Cache libarchive build
       uses: actions/cache@v1
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
-        key: libarchive-${{env.LIBARCHIVE_VERSION}}-1
+        key: ${{ runner.os }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
       uses: actions/cache@v1
       with:
         path: ./packer_cache
-        key: ./packer_cache-1
+        key: ${{ runner.os }}-${{ steps.cache.outputs.date }}-packer_cache
     - name: Cache go mod
       uses: actions/cache@v1
       with:
         path: ~/go/pkg/mod
-        key: go-mod-1
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
     - name: Cache go build
       uses: actions/cache@v1
       with:
         path: ~/.cache/go-build
-        key: go-build-1
+        key: ${{ runner.os }}-go-build
 
     # Installs
     - name: install libarchive
@@ -60,6 +66,7 @@ jobs:
         sudo ./packer build arch-raspi.json
         ls -la
         zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
+        sudo rm -rf packer_cache/*.lock
 
     # Upload
     - uses: actions/upload-artifact@v1
