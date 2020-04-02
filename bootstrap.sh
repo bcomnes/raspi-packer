@@ -8,18 +8,12 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
-#networkctl status
-#dig google.com
-ls -la /
-ls -la /etc
 
-
-# systemctl stop systemd-resolved.service
-echo "nameserver 8.8.8.8" > /run/systemd/resolve/resolv.conf
-cat /run/systemd/resolve/resolv.conf
+rm -f /etc/resolv.conf
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf
 ping -c 4 google.com
-
 pacman -Sy --noconfirm --needed
+
 pacman -S git etckeeper --noconfirm --needed
 git config --global user.email "bcomnes@gmail.com"
 git config --global user.name "Bret Comnes"
