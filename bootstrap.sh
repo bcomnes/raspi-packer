@@ -8,8 +8,6 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 # timedatectl set-ntp true
 
-whoam
-
 #networkctl status
 #dig google.com
 ls -la /
