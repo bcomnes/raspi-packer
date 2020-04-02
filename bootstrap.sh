@@ -11,7 +11,6 @@ pacman-key --populate archlinuxarm
 
 rm -f /etc/resolv.conf
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf
-ping -c 4 google.com
 pacman -Sy --noconfirm --needed
 
 pacman -S git etckeeper --noconfirm --needed
