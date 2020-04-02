@@ -19,7 +19,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
-        key: libarchive-${{env.LIBARCHIVE_VERSION}}
+        key: libarchive-${{env.LIBARCHIVE_VERSION}}-1
     - name: Cache images
       uses: actions/cache@v1
       with:
