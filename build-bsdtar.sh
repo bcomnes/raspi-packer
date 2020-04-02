@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 set -e
@@ -6,11 +5,6 @@ set -x
 # We have to install new bsdtar since the ubuntu version is old
 
 VERSION="$1"
-
-ls -la
-ls -la "./libarchive-${VERSION}"
-
-stat "./libarchive-${VERSION}/Makefile"
 
 if [[ ! -d "./libarchive-${VERSION}" || ! -f "./libarchive-${VERSION}/Makefile" ]]; then
   wget -q "https://www.libarchive.org/downloads/libarchive-${VERSION}.tar.gz";

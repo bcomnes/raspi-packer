@@ -41,17 +41,21 @@ jobs:
 
     # Installs
     - name: install libarchive
+      shell: bash
       run: |
         sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
     - name: install deps
+      shell: bash
       run: |
         sudo apt install qemu-user-static util-linux gdisk e2fsprogs
     - name: install packer and plugins
+      shell: bash
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
 
     # Build
     - name: run packer
+      shell: bash
       run: |
         sudo ./packer build arch-raspi.json
         ls -la
