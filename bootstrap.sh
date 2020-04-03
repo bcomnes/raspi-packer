@@ -86,3 +86,4 @@ git clone https://github.com/bcomnes/.dotfiles
 cd .dotfiles
 pwd
 ls -la
+exit
