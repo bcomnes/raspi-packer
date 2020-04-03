@@ -20,4 +20,3 @@ echo "Building github.com/mkaczanowski/packer-builder-arm"
 go build -v -o packer-builder-arm github.com/mkaczanowski/packer-builder-arm
 echo "Finished building github.com/mkaczanowski/packer-builder-arm"
 
-ls -la
