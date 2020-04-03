@@ -54,7 +54,7 @@ systemctl start etckeeper.timer
 # TODO: Usually do this, but it doesn't work
 #hostnamectl set-hostname raspi3
 # This is a guess workaround
-echo raspi3 /etc/hostname
+echo raspi3 > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
