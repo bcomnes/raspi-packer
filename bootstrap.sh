@@ -79,7 +79,7 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 useradd -m bret
 usermod -aG wheel bret
 
-su - bret
+sudo su - bret
 
 cd ~
 git clone https://github.com/bcomnes/.dotfiles
