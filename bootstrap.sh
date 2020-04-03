@@ -5,6 +5,7 @@ set -e
 set -x
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
+# Doesn't seem to do much
 source /etc/profile
 # Debug info
 env
@@ -14,7 +15,7 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 
 # Enable ntp
-# TODO: can you do this with text?
+# TODO: can you do this with text?  timedatectl is not available in chroot
 #timedatectl set-ntp true
 
 # Enable network connection
