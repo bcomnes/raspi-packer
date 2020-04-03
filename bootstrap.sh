@@ -79,12 +79,13 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 useradd -m bret
 usermod -aG wheel bret
 
-sudo su - bret
+su - bret
 
 cd /Users/bret
-git clone https://github.com/bcomnes/.dotfiles
-cd .dotfiles
-pwd
-ls -la
-./install/bret-dk.sh
-exit
+mkdir .ssh
+touch .ssh/authorized_keys
+curl https://github.com/bcomnes.keys > .ssh/authorized_keys
+chmod go-w /Users/bret
+chmod 700 /Users/bret/.ssh
+chmod 600 /Users/bret/.ssh/authorized_keys
+
