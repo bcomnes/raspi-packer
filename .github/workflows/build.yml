@@ -31,7 +31,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ./packer_cache
-        key: ${{ runner.os }}-${{ steps.cache.outputs.date }}-packer_cache
+        key: ${{ runner.os }}-${{ steps.cache.outputs.date }}-packer_cache-1
     - name: Cache go mod
       uses: actions/cache@v1
       with:
