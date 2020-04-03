@@ -78,9 +78,10 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 # create user
 useradd -m bret
 usermod -aG wheel bret
-# delete default user
-userdel -r alarm
-# disable root login
+# delete default user alarm:alarm
+# Comment out for debugability.
+#userdel -r alarm
+# disable root login root:root
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
 
