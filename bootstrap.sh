@@ -26,16 +26,19 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 # Etckeeper init
 pacman -S git etckeeper --noconfirm --needed
 
+env
+
+export HOME=/root
 # TODO: This doesn't work in chroot
-#git config --global user.email "bcomnes@gmail.com"
-#git config --global user.name "Bret Comnes"
+git config --global user.email "bcomnes@gmail.com"
+git config --global user.name "Bret Comnes"
 #
 # This is a guess workaround
-cat > /root/.gitconfig <<- EOM
-[user]
-  email = bcomnes@gmail.com
-  name = Bret Comnes
-EOM
+#cat > /root/.gitconfig <<- EOM
+#[user]
+#  email = bcomnes@gmail.com
+#  name = Bret Comnes
+#EOM
 
 etckeeper init
 
