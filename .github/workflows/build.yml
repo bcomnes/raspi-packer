@@ -64,7 +64,6 @@ jobs:
       shell: bash
       run: |
         sudo ./packer build arch-raspi.json
-        ls -la
         zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
         sudo rm -rf packer_cache/*.lock
 
