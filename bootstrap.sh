@@ -69,7 +69,7 @@ sed -i 's/resolve/mdns_minimal [NOTFOUND=return] resolve/g' /etc/nsswitch.conf
 
 # disable password auth
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
-systemctl restart sshd
+#systemctl restart sshd
 
 # enable color on
 # pacman
@@ -81,11 +81,11 @@ usermod -aG wheel bret
 
 su - bret
 
-cd /Users/bret
+cd /home/bret
 mkdir .ssh
 touch .ssh/authorized_keys
 curl https://github.com/bcomnes.keys > .ssh/authorized_keys
-chmod go-w /Users/bret
-chmod 700 /Users/bret/.ssh
-chmod 600 /Users/bret/.ssh/authorized_keys
+chmod go-w /home/bret
+chmod 700 /home/bret/.ssh
+chmod 600 /home/bret/.ssh/authorized_keys
 
