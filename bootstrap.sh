@@ -86,4 +86,5 @@ git clone https://github.com/bcomnes/.dotfiles
 cd .dotfiles
 pwd
 ls -la
+./install/bret-dk.sh
 exit
