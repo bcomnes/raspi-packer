@@ -81,7 +81,7 @@ mkdir /home/bret/.ssh
 
 touch /home/bret/.ssh/authorized_keys
 curl https://github.com/bcomnes.keys > /home/bret/.ssh/authorized_keys
-chown bret:bret /home/bret/.ssh
+chown -R bret:bret /home/bret/.ssh
 chmod go-w /home/bret
 chmod 700 /home/bret/.ssh
 chmod 600 /home/bret/.ssh/authorized_keys
