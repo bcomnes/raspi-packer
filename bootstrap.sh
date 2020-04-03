@@ -81,7 +81,8 @@ usermod -aG wheel bret
 
 sudo su - bret
 
-cd ~
+cd /Users/bret
 git clone https://github.com/bcomnes/.dotfiles
-cd ~/.dotfiles
+cd .dotfiles
+pwd
 ls -la
