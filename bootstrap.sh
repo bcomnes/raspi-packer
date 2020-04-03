@@ -14,7 +14,7 @@ pacman-key --populate archlinuxarm
 
 # Enable network connection
 ## TODO double check this is restored on boot
-rm -f /etc/resolv.conf
+mv /etc/resolv.conf /etc/resolv.conf.bk
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf
 pacman -Sy --noconfirm --needed
 
@@ -84,9 +84,6 @@ userdel -r alarm
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
 
-su - bret
-whoami
-
 mkdir /home/bret/.ssh
 
 touch /home/bret/.ssh/authorized_keys
@@ -96,3 +93,5 @@ chmod go-w /home/bret
 chmod 700 /home/bret/.ssh
 chmod 600 /home/bret/.ssh/authorized_keys
 
+# restore original resolve.conf
+mv /etc/resolv.conf.bk /etc/resolv.conf
