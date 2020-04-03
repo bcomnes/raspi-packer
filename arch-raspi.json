@@ -9,7 +9,7 @@
     "file_target_extension": "tar.gz",
     "image_build_method": "new",
     "image_path": "raspberry-pi3.img",
-    "image_size": "7.4G",
+    "image_size": "7.43G",
     "image_type": "dos",
     "image_partitions": [
       {
@@ -17,13 +17,13 @@
         "type": "c",
         "start_sector": "2048",
         "filesystem": "vfat",
-        "size": "100",
+        "size": "256M",
         "mountpoint": "/boot"
       },
       {
         "name": "root",
         "type": "83",
-        "start_sector": "206848",
+        "start_sector": "526336",
         "filesystem": "ext4",
         "size": "0",
         "mountpoint": "/"
