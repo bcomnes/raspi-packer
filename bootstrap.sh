@@ -73,7 +73,7 @@ useradd -m bret
 usermod -aG wheel bret
 # delete default user alarm:alarm
 # Comment out for debugability.
-#userdel -r alarm
+userdel -r alarm
 # disable root login root:root
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
