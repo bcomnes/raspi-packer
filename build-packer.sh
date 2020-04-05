@@ -11,12 +11,14 @@ unzip "packer_${PACKER_VERSION}_linux_amd64.zip"
 #./packer version
 echo "Finished building packer"
 
-# echo "Building packer"
-# go build -v -o packer github.com/hashicorp/packer
-# ./packer version
-# echo "Finished building packer"
+# Src build of packer
+#echo "Building packer"
+#go build -v -o packer github.com/hashicorp/packer
+#./packer version
+#echo "Finished building packer"
 
 echo "Building github.com/mkaczanowski/packer-builder-arm"
+# Version tracked in go.mod + tools.go
 go build -v -o packer-builder-arm github.com/mkaczanowski/packer-builder-arm
 echo "Finished building github.com/mkaczanowski/packer-builder-arm"
 
