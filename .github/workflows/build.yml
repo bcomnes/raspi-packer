@@ -63,7 +63,7 @@ jobs:
     - name: run packer
       shell: bash
       run: |
-        sudo ./packer build packer.json -var-file ./hosts/raspi3/64gb.json
+        sudo ./packer build -var-file ./hosts/raspi3/64gb.json packer.json
         zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
         md5sum raspberry-pi3.img.zip > raspberry-pi3.img.zip.md5
         sudo rm -rf packer_cache/*.lock
