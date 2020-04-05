@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Run in a chroot context
+
 set -e
 set -x
 
@@ -48,6 +50,12 @@ git commit -m 'initial commit'
 
 systemctl enable etckeeper.timer
 systemctl start etckeeper.timer
+
+# set up resize firstrun script
+mv /tmp/resizerootfs.service /etc/systemd/system
+chmod +x /tmp/resizerootfs
+mv /tmp/resizerootfs /usr/sbin/
+systemctl enable resizerootfs.service
 
 # Set Hostname
 # Normally we use hostnamectl, but that doesn't work in chroot

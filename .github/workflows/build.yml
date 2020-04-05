@@ -63,7 +63,7 @@ jobs:
     - name: run packer
       shell: bash
       run: |
-        sudo ./packer build -var-file ./hosts/raspi3/64gb.json packer.json
+        sudo ./packer build -var-file ./hosts/raspi3/2gb.json packer.json
 
     # pack
     - name: archive + compress image

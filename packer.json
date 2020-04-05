@@ -42,15 +42,27 @@
     "qemu_binary_source_path": "{{user `qemu_binary`}}",
     "qemu_binary_destination_path": "{{user `qemu_binary`}}"
   }],
-  "provisioners": [{
-    "type": "shell",
-    "script": "bootstrap.sh",
-    "environment_vars": [
-      "HOSTNAME={{user `hostname`}}",
-      "USERNAME={{user `username`}}",
-      "GITHUB_KEYS={{user `github_keys`}}",
-      "GIT_USER_NAME={{user `git_user_name`}}",
-      "GIT_USER_EMAIL={{user `git_user_email`}}"
-    ]
-  }]
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "resizerootfs",
+      "destination": "/tmp/resizerootfs"
+    },
+    {
+      "type": "file",
+      "source": "resizerootfs.service",
+      "destination": "/tmp/resizerootfs.service"
+    },
+    {
+      "type": "shell",
+      "script": "bootstrap.sh",
+      "environment_vars": [
+        "HOSTNAME={{user `hostname`}}",
+        "USERNAME={{user `username`}}",
+        "GITHUB_KEYS={{user `github_keys`}}",
+        "GIT_USER_NAME={{user `git_user_name`}}",
+        "GIT_USER_EMAIL={{user `git_user_email`}}"
+      ]
+    }
+  ]
 }
