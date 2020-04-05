@@ -364,8 +364,8 @@ github.com/mitchellh/prefixedio v0.0.0-20151214002211-6e6954073784 h1:+DAetXqxv/
 github.com/mitchellh/prefixedio v0.0.0-20151214002211-6e6954073784/go.mod h1:kB1naBgV9ORnkiTVeyJOI1DavaJkG4oNIq0Af6ZVKUo=
 github.com/mitchellh/reflectwalk v1.0.0 h1:9D+8oIskB4VJBN5SFlmc27fSlIBZaov1Wpk/IfikLNY=
 github.com/mitchellh/reflectwalk v1.0.0/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
-github.com/mkaczanowski/packer-builder-arm v0.0.0-20200404191634-6f9a6c3850ff h1:kw71FapoAigVlcA5ZGzJamt6SytK9A9FxaEGa6NsJwE=
-github.com/mkaczanowski/packer-builder-arm v0.0.0-20200404191634-6f9a6c3850ff/go.mod h1:ijbZD+MZgZszhrd5gGsZw4MjDK1L6pYU5tWnSrLfqgg=
+github.com/mkaczanowski/packer-builder-arm v0.0.0-20200405120250-57ee739eb37a h1:aXWEqk4kkb1Mnr6vtVRy6v5WHpu013NACOJf2xEQGjI=
+github.com/mkaczanowski/packer-builder-arm v0.0.0-20200405120250-57ee739eb37a/go.mod h1:ijbZD+MZgZszhrd5gGsZw4MjDK1L6pYU5tWnSrLfqgg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/reflect2 v1.0.1 h1:9f412s+6RmYXLWZSEzVVgPGK7C2PphHj5RJrvfx9AWI=
