@@ -63,8 +63,9 @@ jobs:
     - name: run packer
       shell: bash
       run: |
-        sudo ./packer build arch-raspi.json
+        sudo ./packer build packer.json -var-file ./hosts/raspi3/64gb.json
         zip -r9 --display-dots raspberry-pi3.img.zip raspberry-pi3.img
+        md5sum raspberry-pi3.img.zip > raspberry-pi3.img.zip.md5
         sudo rm -rf packer_cache/*.lock
 
     # Upload
@@ -72,3 +73,7 @@ jobs:
       with:
         name: raspberry-pi3.img.zip
         path: raspberry-pi3.img.zip
+    - uses: actions/upload-artifact@v1
+      with:
+        name: raspberry-pi3.img.zip.md5
+        path: raspberry-pi3.img.zip.md5

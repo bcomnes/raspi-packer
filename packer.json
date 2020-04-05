@@ -1,0 +1,56 @@
+{
+  "variables": {
+    "hostname": "alarm",
+    "username": "bret",
+    "github_keys": "https://github.com/bcomnes.keys",
+    "git_user_email": "bcomnes@gmail.com",
+    "git_user_name": "Bret Comnes"
+    "size": "59.7G",
+    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
+    "img_name": "raspberry-pi3.img"
+    "qemu_binary": "/usr/bin/qemu-aarch64-static"
+  },
+  "builders": [{
+    "type": "arm",
+    "file_urls" : ["{{user `img_url`}}"],
+    "file_checksum_url": "{{user `img_url`}}.md5",
+    "file_checksum_type": "md5",
+    "file_unarchive_cmd": ["bsdtar", "-xpf", "$ARCHIVE_PATH", "-C", "$MOUNTPOINT"],
+    "file_target_extension": "tar.gz",
+    "image_build_method": "new",
+    "image_path": "{{user `img_name`}}",
+    "image_size": "{{user `size`}}",
+    "image_type": "dos",
+    "image_partitions": [
+      {
+        "name": "boot",
+        "type": "c",
+        "start_sector": "2048",
+        "filesystem": "vfat",
+        "size": "256M",
+        "mountpoint": "/boot"
+      },
+      {
+        "name": "root",
+        "type": "83",
+        "start_sector": "526336",
+        "filesystem": "ext4",
+        "size": "0",
+        "mountpoint": "/"
+      }
+    ],
+    "qemu_binary_source_path": "{{user `qemu_binary`}}",
+    "qemu_binary_destination_path": "{{user `qemu_binary`}}"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "script": "bootstrap.sh",
+    "environment_vars": [
+      "HOSTNAME={{user `hostname`}}",
+      "USERNAME={{user `username`}}",
+      "GITHUB_KEYS={{user `github_keys`}}",
+      "GIT_USER_NAME={{user `git_user_name`}}",
+      "GIT_USER_EMAIL={{user `git_user_email`}}"
+    ]
+  }]
+}

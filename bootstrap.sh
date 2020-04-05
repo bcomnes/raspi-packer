@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
-# bret-mbr:sbc-bootstrap bret$ ssh bret@192.168.1.12
 set -e
 set -x
+
+hostname="${HOSTNAME}"
+username="${USERNAME}"
+github_keys="${GITHUB_KEYS}"
+git_user_name="${GIT_USER_NAME}"
+git_user_email="${GIT_USER_EMAIL}"
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
@@ -32,8 +37,8 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 pacman -S git etckeeper --noconfirm --needed
 
 export HOME=/root
-git config --global user.email "bcomnes@gmail.com"
-git config --global user.name "Bret Comnes"
+git config --global user.email "${git_user_email}"
+git config --global user.name "${git_user_name}"
 
 etckeeper init
 
@@ -47,7 +52,7 @@ systemctl start etckeeper.timer
 # Set Hostname
 # Normally we use hostnamectl, but that doesn't work in chroot
 #hostnamectl set-hostname raspi3
-echo raspi3 > /etc/hostname
+echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
@@ -69,8 +74,8 @@ sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 
 # create user
-useradd -m bret
-usermod -aG wheel bret
+useradd -m "${username}"
+usermod -aG wheel "${username}"
 # delete default user alarm:alarm
 # Comment out for debugability.
 userdel -r alarm
@@ -78,14 +83,14 @@ userdel -r alarm
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
 
-mkdir /home/bret/.ssh
+mkdir /home/"${username}"/.ssh
 
-touch /home/bret/.ssh/authorized_keys
-curl https://github.com/bcomnes.keys > /home/bret/.ssh/authorized_keys
-chown -R bret:bret /home/bret/.ssh
-chmod go-w /home/bret
-chmod 700 /home/bret/.ssh
-chmod 600 /home/bret/.ssh/authorized_keys
+touch "/home/${username}/.ssh/authorized_keys"
+curl "${github_keys}" > "/home/${username}/.ssh/authorized_keys"
+chown -R "${username}:${username}" "/home/${username}/.ssh"
+chmod go-w "/home/${username}"
+chmod 700 "/home/${username}/.ssh"
+chmod 600 "/home/${username}/.ssh/authorized_keys"
 
 # restore original resolve.conf
 mv /etc/resolv.conf.bk /etc/resolv.conf
