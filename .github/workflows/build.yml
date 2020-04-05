@@ -69,8 +69,7 @@ jobs:
     - name: archive + compress image
       shell: bash
       run: |
-        ls -la
-        tar -czvfS raspberry-pi3.img.tar.gz ./raspberry-pi3.img
+        tar --sparse -vczf raspberry-pi3.img.tar.gz ./raspberry-pi3.img
         md5sum raspberry-pi3.img.tar.gz > raspberry-pi3.img.tar.gz.md5
 
     # cleanup
