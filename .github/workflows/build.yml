@@ -64,8 +64,18 @@ jobs:
       shell: bash
       run: |
         sudo ./packer build -var-file ./hosts/raspi3/64gb.json packer.json
+
+    # pack
+    - name: archive + compress image
+      shell: bash
+      run: |
         tar -czvfS raspberry-pi3.img.tar.gz raspberry-pi3.img
         md5sum raspberry-pi3.img.tar.gz > raspberry-pi3.img.tar.gz.md5
+
+    # cleanup
+    - name: cleanup cache
+      shell: bash
+      run: |
         sudo rm -rf packer_cache/*.lock
 
     # Upload
