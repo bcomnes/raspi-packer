@@ -22,7 +22,7 @@ pacman-key --init
 pacman-key --populate archlinuxarm
 
 # Enable ntp
-# TODO: can you do this with text?  timedatectl is not available in chroot
+# Turns out this is on by default now
 #timedatectl set-ntp true
 
 # Enable network connection
@@ -64,7 +64,12 @@ echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
-pacman -S vim htop sudo avahi nss-mdns parted --noconfirm --needed
+pacman -S vim htop sudo avahi nss-mdns parted rng-tools --noconfirm --needed
+
+# enable rng-tools
+systemctl enable rngd.service
+# disable software rng stuff
+systemctl disable haveged.service
 
 # Set up no-password sudo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
@@ -91,8 +96,8 @@ userdel -r alarm
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
 
+# Setup user ssh keys
 mkdir /home/"${username}"/.ssh
-
 touch "/home/${username}/.ssh/authorized_keys"
 curl "${github_keys}" > "/home/${username}/.ssh/authorized_keys"
 chown -R "${username}:${username}" "/home/${username}/.ssh"
