@@ -7,8 +7,6 @@ rootpart=/dev/${roottmp%% */}
 rootdev=/dev/$(echo $roottmp | awk '{split($0,a,"p"); print a[1]}')
 cnt=$(echo $roottmp | awk '{split($0,a,"p"); print a[2]}')
 
-ls $(dirname $rootpart)
-
 flock $rootdev sfdisk -f $rootdev -N $cnt <<EOF
 ,+
 EOF
