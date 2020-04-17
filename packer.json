@@ -21,6 +21,7 @@
     "image_path": "{{user `img_name`}}",
     "image_size": "{{user `size`}}",
     "image_type": "dos",
+    "image_chroot_env": ["PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"],
     "image_partitions": [
       {
         "name": "boot",
