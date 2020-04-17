@@ -59,6 +59,10 @@ jobs:
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
 
+    - name: find qemu_binary
+      shell: bash
+      run: ls -la /usr/bin/ | grep qemu
+
     # Build
     - name: run packer
       shell: bash
