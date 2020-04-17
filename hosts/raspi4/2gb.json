@@ -3,5 +3,5 @@
     "size": "2G",
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-4-latest.tar.gz",
     "img_name": "raspberry-pi4.img",
-    "qemu_binary": "/usr/bin/qemu-aarch64-static"
+    "qemu_binary": "/usr/bin/qemu-arm-static"
 }
