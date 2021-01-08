@@ -83,11 +83,11 @@ jobs:
         sudo rm -rf packer_cache/*.lock
 
     # Upload
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2.2.2
       with:
         name: raspberry-pi4-aarch64.img.tar.gz
         path: raspberry-pi4-aarch64.img.tar.gz
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v2.2.2
       with:
         name: raspberry-pi4-aarch64.img.tar.gz.md5
         path: raspberry-pi4-aarch64.img.tar.gz.md5
