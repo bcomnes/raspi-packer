@@ -36,7 +36,7 @@ locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 # Etckeeper init
-pacman -S git etckeeper --noconfirm --needed
+pacman -S git etckeeper glibc --noconfirm --needed
 
 export HOME=/root
 git config --global user.email "${git_user_email}"
