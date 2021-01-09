@@ -23,24 +23,24 @@ jobs:
         echo "::set-output name=date::$(date +'%m-%Y')"
       id: cache
     - name: Cache libarchive build
-      uses: actions/cache@v1
+      uses: actions/cache@v2.1.3
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
         key: ${{ runner.os }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
-      uses: actions/cache@v1
+      uses: actions/cache@v2.1.3
       with:
         path: ./packer_cache
         key: ${{ runner.os }}-${{ steps.cache.outputs.date }}-packer_cache-1
     - name: Cache go mod
-      uses: actions/cache@v1
+      uses: actions/cache@v2.1.3
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
     - name: Cache go build
-      uses: actions/cache@v1
+      uses: actions/cache@v2.1.3
       with:
         path: ~/.cache/go-build
         key: ${{ runner.os }}-go-build
