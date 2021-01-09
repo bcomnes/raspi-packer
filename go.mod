@@ -1,5 +1,5 @@
 module github.com/bcomnes/raspi-packer
 
-go 1.14
+go 1.15
 
-require github.com/mkaczanowski/packer-builder-arm v0.0.0-20200412123520-83daec444c31
+require github.com/mkaczanowski/packer-builder-arm v0.0.0-20210107210357-2b57acc593c9

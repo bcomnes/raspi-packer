@@ -16,7 +16,7 @@ jobs:
     # TOOLS
     - uses: actions/setup-go@v2.1.3
       with:
-        go-version: '^1.14.1'
+        go-version: '^1.15.0'
     # Caches
     - name: Current Month Var
       run: |

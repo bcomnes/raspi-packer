@@ -301,8 +301,8 @@ github.com/mitchellh/panicwrap v0.0.0-20170106182340-fce601fe5557/go.mod h1:QuAq
 github.com/mitchellh/prefixedio v0.0.0-20151214002211-6e6954073784/go.mod h1:kB1naBgV9ORnkiTVeyJOI1DavaJkG4oNIq0Af6ZVKUo=
 github.com/mitchellh/reflectwalk v1.0.0 h1:9D+8oIskB4VJBN5SFlmc27fSlIBZaov1Wpk/IfikLNY=
 github.com/mitchellh/reflectwalk v1.0.0/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
-github.com/mkaczanowski/packer-builder-arm v0.0.0-20200412123520-83daec444c31 h1:fOTHKaX14dNQWRTJo2tl+d4hrAzGx+nRvkxdHi8Wxu0=
-github.com/mkaczanowski/packer-builder-arm v0.0.0-20200412123520-83daec444c31/go.mod h1:ijbZD+MZgZszhrd5gGsZw4MjDK1L6pYU5tWnSrLfqgg=
+github.com/mkaczanowski/packer-builder-arm v0.0.0-20210107210357-2b57acc593c9 h1:muDQ1DENazEVjmLHetKtCL/IPvS8g7UiSOxpvMNqkFs=
+github.com/mkaczanowski/packer-builder-arm v0.0.0-20210107210357-2b57acc593c9/go.mod h1:C7s+pCgjfMjOqZIr3llZKQ+/gbjUKE1ztMxdV+rt9yU=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/moul/anonuuid v0.0.0-20160222162117-609b752a95ef/go.mod h1:LgKrp0Iss/BVwquptq4eIe6HPr0s3t1WHT5x0qOh14U=
