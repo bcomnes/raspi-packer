@@ -14,7 +14,7 @@ jobs:
     # CODE
     - uses: actions/checkout@v2
     # TOOLS
-    - uses: actions/setup-go@v2-beta
+    - uses: actions/setup-go@v2.1.3
       with:
         go-version: '^1.14.1'
     # Caches
