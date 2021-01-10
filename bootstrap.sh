@@ -29,7 +29,8 @@ pacman-key --populate archlinuxarm
 if [[ -f /etc/resolv.conf ]]; then
   mv /etc/resolv.conf /etc/resolv.conf.bk;
 fi
-echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+touch /etc/resolv.conf
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
 pacman -Sy --noconfirm --needed
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
