@@ -1,7 +1,7 @@
 {
     "hostname": "raspi3",
     "size": "2G",
-    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
+    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
     "img_name": "raspberry-pi3.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static"
 }

@@ -4,10 +4,10 @@ set -x
 
 roottmp=$(lsblk -l -o NAME,MOUNTPOINT | grep '/$')
 rootpart=/dev/${roottmp%% */}
-rootdev=/dev/$(echo $roottmp | awk '{split($0,a,"p"); print a[1]}')
-cnt=$(echo $roottmp | awk '{split($0,a,"p"); print a[2]}')
+rootdev=/dev/$(echo "$roottmp" | awk '{split($0,a,"p"); print a[1]}')
+cnt=$(echo "$roottmp" | awk '{split($0,a,"p"); print a[2]}')
 
-flock $rootdev sfdisk -f $rootdev -N $cnt <<EOF
+flock "$rootdev" sfdisk -f "$rootdev" -N "$cnt" <<EOF
 ,+
 EOF
 
@@ -17,10 +17,10 @@ udevadm settle
 
 sleep 5
 
-flock $rootdev partprobe $rootdev
+flock "$rootdev" partprobe "$rootdev"
 
-mount -o remount,rw $rootpart
+mount -o remount,rw "$rootpart"
 
-resize2fs $rootpart
+resize2fs "$rootpart"
 
 exit 0

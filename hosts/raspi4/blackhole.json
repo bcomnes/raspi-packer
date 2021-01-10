@@ -1,0 +1,7 @@
+{
+    "hostname": "ace",
+    "size": "2G",
+    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
+    "img_name": "ace.img",
+    "qemu_binary": "/usr/bin/qemu-aarch64-static"
+}

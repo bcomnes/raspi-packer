@@ -11,6 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        host:
+        - path: ./hosts/raspi3/aarch64.json
+          imgName: raspberry-pi3.img
+        - path: ./hosts/raspi4/aarch64.json
+          imgName: raspberry-pi4.img
+        - path: ./hosts/raspi4/ace.json
+          imgName: ace.img
+
+
+
     steps:
     # CODE
     - uses: actions/checkout@v2
@@ -27,24 +39,24 @@ jobs:
       uses: actions/cache@v2.1.3
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
-        key: ${{ runner.os }}-libarchive-${{env.LIBARCHIVE_VERSION}}
+        key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
       uses: actions/cache@v2.1.3
       with:
         path: ./packer_cache
-        key: ${{ runner.os }}-${{ steps.cache.outputs.date }}-packer_cache-1
+        key: ${{ runner.os }}-${{ matrix.host.imgName }}-${{ steps.cache.outputs.date }}-packer_cache-1
     - name: Cache go mod
       uses: actions/cache@v2.1.3
       with:
         path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
     - name: Cache go build
       uses: actions/cache@v2.1.3
       with:
         path: ~/.cache/go-build
-        key: ${{ runner.os }}-go-build
+        key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-build
 
     # Installs
     - name: install libarchive
@@ -68,14 +80,14 @@ jobs:
     - name: run packer
       shell: bash
       run: |
-        sudo ./packer build -var-file ./hosts/raspi4/2gb-x64.json packer.json
+        sudo ./packer build -var-file ${{ matrix.host.path }} packer.json
 
     # pack
     - name: archive + compress image
       shell: bash
       run: |
-        tar --sparse -vczf raspberry-pi4-aarch64.img.tar.gz ./raspberry-pi4-aarch64.img
-        md5sum raspberry-pi4-aarch64.img.tar.gz > raspberry-pi4-aarch64.img.tar.gz.md5
+        tar --sparse -vczf ${{ matrix.host.imgName }}.tar.gz ./${{ matrix.host.imgName }}
+        md5sum raspberry-pi3.img.tar.gz > raspberry-pi3.img.tar.gz.md5
 
     # cleanup
     - name: cleanup cache
@@ -86,9 +98,9 @@ jobs:
     # Upload
     - uses: actions/upload-artifact@v2.2.2
       with:
-        name: raspberry-pi4-aarch64.img.tar.gz
-        path: raspberry-pi4-aarch64.img.tar.gz
+        name: ${{ matrix.host.imgName }}.tar.gz
+        path: ${{ matrix.host.imgName }}.tar.gz
     - uses: actions/upload-artifact@v2.2.2
       with:
-        name: raspberry-pi4-aarch64.img.tar.gz.md5
-        path: raspberry-pi4-aarch64.img.tar.gz.md5
+        name: ${{ matrix.host.imgName }}.tar.gz.md5
+        path: ${{ matrix.host.imgName }}.tar.gz.md5
