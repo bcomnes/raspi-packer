@@ -26,10 +26,9 @@ pacman-key --populate archlinuxarm
 #timedatectl set-ntp true
 
 # Enable network connection
-if [[ -f /etc/resolv.conf ]]; then
+if [[ -L /etc/resolv.conf ]]; then
   mv /etc/resolv.conf /etc/resolv.conf.bk;
 fi
-touch /etc/resolv.conf
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
 pacman -Sy --noconfirm --needed
 
@@ -109,7 +108,7 @@ chmod 700 "/home/${username}/.ssh"
 chmod 600 "/home/${username}/.ssh/authorized_keys"
 
 # restore original resolve.conf
-if [[ -f /etc/resolv.conf.bk ]]; then
+if [[ -L /etc/resolv.conf.bk ]]; then
   mv /etc/resolv.conf.bk /etc/resolv.conf;
 fi
 
