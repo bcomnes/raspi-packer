@@ -87,7 +87,7 @@ jobs:
       shell: bash
       run: |
         tar --sparse -vczf ${{ matrix.host.imgName }}.tar.gz ./${{ matrix.host.imgName }}
-        md5sum raspberry-pi3.img.tar.gz > raspberry-pi3.img.tar.gz.md5
+        md5sum ${{ matrix.host.imgName }}.tar.gz > ${{ matrix.host.imgName }}.tar.gz.md5
 
     # cleanup
     - name: cleanup cache
