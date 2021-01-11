@@ -108,7 +108,7 @@ chmod go-w "/home/${username}"
 chmod 700 "/home/${username}/.ssh"
 chmod 600 "/home/${username}/.ssh/authorized_keys"
 
-if [ "$pi4_block" = true ] ; then
+if [ "$pi4_block" = "true" ] ; then
   echo 'setting up pi4 fstab'
   sed -i 's/mmcblk0/mmcblk1/g' /root/etc/fstab
 fi

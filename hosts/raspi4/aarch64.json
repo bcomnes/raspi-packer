@@ -4,5 +4,5 @@
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
     "img_name": "raspberry-pi4.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static",
-    "pi4_block": true
+    "pi4_block": "true"
 }
