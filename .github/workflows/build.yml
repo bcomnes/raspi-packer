@@ -17,9 +17,11 @@ jobs:
         - path: ./hosts/raspi3/aarch64.json
           imgName: raspberry-pi3.img
         - path: ./hosts/raspi4/aarch64.json
-          imgName: raspberry-pi4.img
+          imgName: raspberry-pi4-aarch64.img
         - path: ./hosts/raspi4/ace.json
           imgName: ace.img
+        - path: ./hosts/raspi4/armv7.json
+          imgName: raspberry-pi4-armv7.img
 
 
 
