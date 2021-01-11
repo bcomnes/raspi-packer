@@ -10,6 +10,7 @@ username="${USERNAME}"
 github_keys="${GITHUB_KEYS}"
 git_user_name="${GIT_USER_NAME}"
 git_user_email="${GIT_USER_EMAIL}"
+pi4_block="${PI4_BLOCK}"
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
@@ -106,6 +107,11 @@ chown -R "${username}:${username}" "/home/${username}/.ssh"
 chmod go-w "/home/${username}"
 chmod 700 "/home/${username}/.ssh"
 chmod 600 "/home/${username}/.ssh/authorized_keys"
+
+if [ "$pi4_block" = true ] ; then
+  echo 'setting up pi4 fstab'
+  sed -i 's/mmcblk0/mmcblk1/g' /root/etc/fstab
+fi
 
 # restore original resolve.conf
 if [[ -L /etc/resolv.conf.bk ]]; then

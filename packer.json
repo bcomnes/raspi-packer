@@ -5,10 +5,11 @@
     "github_keys": "https://github.com/bcomnes.keys",
     "git_user_email": "bcomnes@gmail.com",
     "git_user_name": "Bret Comnes",
-    "size": "59.7G",
+    "size": "2G",
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
     "img_name": "raspberry-pi3.img",
-    "qemu_binary": "/usr/bin/qemu-aarch64-static"
+    "qemu_binary": "/usr/bin/qemu-aarch64-static",
+    "pi4_block": false
   },
   "builders": [{
     "type": "arm",
@@ -61,7 +62,8 @@
         "USERNAME={{user `username`}}",
         "GITHUB_KEYS={{user `github_keys`}}",
         "GIT_USER_NAME={{user `git_user_name`}}",
-        "GIT_USER_EMAIL={{user `git_user_email`}}"
+        "GIT_USER_EMAIL={{user `git_user_email`}}",
+        "PI4_BLOCK={{user `pi4_block`}}"
       ]
     }
   ]
