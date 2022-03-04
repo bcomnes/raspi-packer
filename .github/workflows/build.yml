@@ -101,11 +101,11 @@ jobs:
         sudo rm -rf packer_cache/*.lock
 
     # Upload
-    - uses: actions/upload-artifact@v2.3.1
+    - uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.host.imgName }}.tar.gz
         path: ${{ matrix.host.imgName }}.tar.gz
-    - uses: actions/upload-artifact@v2.3.1
+    - uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.host.imgName }}.tar.gz.md5
         path: ${{ matrix.host.imgName }}.tar.gz.md5
