@@ -31,7 +31,7 @@ jobs:
     # CODE
     - uses: actions/checkout@v3
     # TOOLS
-    - uses: actions/setup-go@v2
+    - uses: actions/setup-go@v3
       with:
         go-version: '^${{ env.GO_VERSION }}'
         check-latest: true
