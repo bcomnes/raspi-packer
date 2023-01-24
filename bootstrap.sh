@@ -31,12 +31,13 @@ if [[ -L /etc/resolv.conf ]]; then
   mv /etc/resolv.conf /etc/resolv.conf.bk;
 fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
-pacman -Sy --noconfirm --needed
+pacman -Syu --noconfirm --needed
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+echo 'LC_ALL=en_US.UTF-8' >> /etc/locale.conf
 
 # Etckeeper init
 pacman -S git etckeeper glibc --noconfirm --needed
@@ -60,6 +61,12 @@ chmod +x /tmp/resizerootfs
 mv /tmp/resizerootfs /usr/sbin/
 systemctl enable resizerootfs.service
 
+# set up mac-host firstrun script
+mv /tmp/mac-host.service /etc/systemd/system
+chmod +x /tmp/mac-host.sh
+mv /tmp/mac-host.sh /usr/sbin/
+systemctl enable mac-host.service
+
 # Set Hostname
 # Normally we use hostnamectl, but that doesn't work in chroot
 #hostnamectl set-hostname raspi3
@@ -67,15 +74,13 @@ echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
-pacman -S openssl-1.1 --noconfirm --needed
-pacman -S vim htop sudo avahi nss-mdns parted --noconfirm --needed
+pacman -S vim htop parted --noconfirm --needed
 
-# Set up no-password sudo
-echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-
-# Set up avahi
-systemctl enable avahi-daemon.service
-sed -i 's/resolve/mdns_minimal [NOTFOUND=return] resolve/g' /etc/nsswitch.conf
+# Set up systemd-resolved
+mkdir -p /etc/systemd/resolved.conf.d
+echo '[Resolve]' > /etc/systemd/resolved.conf.d/mdns.conf
+echo 'MulticastDNS=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
+systemctl enable systemd-resolved.service
 
 # disable password auth
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
@@ -90,7 +95,7 @@ useradd -m "${username}"
 usermod -aG wheel "${username}"
 # delete default user alarm:alarm
 # Comment out for debugability.
-userdel -r alarm
+# userdel -r alarm
 # disable root login root:root
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
 passwd -l root
@@ -103,6 +108,10 @@ chown -R "${username}:${username}" "/home/${username}/.ssh"
 chmod go-w "/home/${username}"
 chmod 700 "/home/${username}/.ssh"
 chmod 600 "/home/${username}/.ssh/authorized_keys"
+
+pacman -S sudo --noconfirm --needed
+# Set up no-password sudo
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
 if [ "$pi4_block" = "true" ] ; then
   echo 'setting up pi4 fstab'

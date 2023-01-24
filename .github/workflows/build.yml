@@ -3,9 +3,10 @@ name: build
 on: [push]
 
 env:
-  PACKER_VERSION: 1.8.5
+  PACKER_VERSION: latest
   LIBARCHIVE_VERSION: 3.6.2
   GO_VERSION: '^1.19.5'
+  PACKER_CACHE_DIR: ~/packer_cache/
 
 jobs:
   build:
@@ -36,6 +37,7 @@ jobs:
         go-version: ${{ env.GO_VERSION }}
         check-latest: true
         cache: true
+
     - name: Setup `packer`
       uses: hashicorp/setup-packer@v2.0.0
       id: setup
@@ -46,15 +48,15 @@ jobs:
       run: |
         echo "::set-output name=date::$(date +'%m-%Y')"
       id: cache
-    #- name: Cache libarchive build
-    #  uses: actions/cache@v3
-    #  with:
-    #    path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
-    #    key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
+    - name: Cache libarchive build
+      uses: actions/cache@v3
+      with:
+        path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
+        key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
       uses: actions/cache@v3
       with:
-        path: ./packer_cache
+        path: ${{ env.PACKER_CACHE_DIR }}
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-${{ steps.cache.outputs.date }}-packer_cache-1
     - name: Cache go build
       uses: actions/cache@v3
@@ -63,10 +65,10 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-build
 
     # Installs
-    #- name: install libarchive
-    #  shell: bash
-    #  run: |
-    #    sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
+    - name: install libarchive
+      shell: bash
+      run: |
+        sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
     - name: install deps
       shell: bash
       run: |

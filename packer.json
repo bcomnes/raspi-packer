@@ -7,6 +7,8 @@
     "git_user_name": "Bret Comnes",
     "size": "2G",
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
+    "file_unarchive_bin": "bsdtar",
+    "file_unarchive_flags": "-xpf",
     "img_name": "raspberry-pi3.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static",
     "pi4_block": "false"
@@ -16,7 +18,7 @@
     "file_urls" : ["{{user `img_url`}}"],
     "file_checksum_url": "{{user `img_url`}}.md5",
     "file_checksum_type": "md5",
-    "file_unarchive_cmd": ["tar", "-xzvf", "$ARCHIVE_PATH", "-C", "$MOUNTPOINT"],
+    "file_unarchive_cmd": ["{{user `file_unarchive_bin`}}", "{{user `file_unarchive_flags`}}", "$ARCHIVE_PATH", "-C", "$MOUNTPOINT"],
     "file_target_extension": "tar.gz",
     "image_build_method": "new",
     "image_path": "{{user `img_name`}}",
@@ -53,6 +55,16 @@
       "type": "file",
       "source": "resizerootfs.service",
       "destination": "/tmp/resizerootfs.service"
+    },
+    {
+      "type": "file",
+      "source": "mac-host.sh",
+      "destination": "/tmp/mac-host.sh"
+    },
+    {
+      "type": "file",
+      "source": "mac-host.service",
+      "destination": "/tmp/mac-host.service"
     },
     {
       "type": "shell",
