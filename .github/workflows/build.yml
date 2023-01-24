@@ -46,11 +46,11 @@ jobs:
       run: |
         echo "::set-output name=date::$(date +'%m-%Y')"
       id: cache
-    - name: Cache libarchive build
-      uses: actions/cache@v3
-      with:
-        path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
-        key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
+    #- name: Cache libarchive build
+    #  uses: actions/cache@v3
+    #  with:
+    #    path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
+    #    key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
       uses: actions/cache@v3
       with:
@@ -63,10 +63,10 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-build
 
     # Installs
-    - name: install libarchive
-      shell: bash
-      run: |
-        sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
+    #- name: install libarchive
+    #  shell: bash
+    #  run: |
+    #    sudo ./build-bsdtar.sh $LIBARCHIVE_VERSION
     - name: install deps
       shell: bash
       run: |

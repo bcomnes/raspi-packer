@@ -67,12 +67,8 @@ echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
-pacman -S vim htop sudo avahi nss-mdns parted rng-tools --noconfirm --needed
-
-# enable rng-tools
-systemctl enable rngd.service
-# disable software rng stuff
-systemctl disable haveged.service
+pacman -S openssl-1.1 --noconfirm --needed
+pacman -S vim htop sudo avahi nss-mdns parted --noconfirm --needed
 
 # Set up no-password sudo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
