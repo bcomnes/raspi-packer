@@ -3,9 +3,9 @@ name: build
 on: [push]
 
 env:
-  PACKER_VERSION: 1.6.6
-  LIBARCHIVE_VERSION: 3.5.1
-  GO_VERSION: 1.17.0
+  PACKER_VERSION: 1.8.5
+  LIBARCHIVE_VERSION: 3.6.2
+  GO_VERSION: '^1.19.5'
 
 jobs:
   build:
@@ -14,16 +14,16 @@ jobs:
     strategy:
       matrix:
         host:
-        - path: ./hosts/raspi3/aarch64.json
-          imgName: raspberry-pi3.img
         - path: ./hosts/raspi4/aarch64.json
           imgName: raspberry-pi4-aarch64.img
-        - path: ./hosts/raspi4/ace.json
-          imgName: ace.img
-        - path: ./hosts/raspi4/ace-64.json
-          imgName: ace-64.img
         - path: ./hosts/raspi4/armv7.json
           imgName: raspberry-pi4-armv7.img
+        #- path: ./hosts/raspi3/aarch64.json
+        #  imgName: raspberry-pi3.img
+        #- path: ./hosts/raspi4/ace.json
+        #  imgName: ace.img
+        #- path: ./hosts/raspi4/ace-64.json
+        #  imgName: ace-64.img
 
 
 
@@ -33,8 +33,14 @@ jobs:
     # TOOLS
     - uses: actions/setup-go@v3
       with:
-        go-version: '^${{ env.GO_VERSION }}'
+        go-version: ${{ env.GO_VERSION }}
         check-latest: true
+        cache: true
+    - name: Setup `packer`
+      uses: hashicorp/setup-packer@v2.0.0
+      id: setup
+      with:
+        version: ${{ env.PACKER_VERSION }} # or `latest`
     # Caches
     - name: Current Month Var
       run: |
@@ -50,13 +56,6 @@ jobs:
       with:
         path: ./packer_cache
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-${{ steps.cache.outputs.date }}-packer_cache-1
-    - name: Cache go mod
-      uses: actions/cache@v3
-      with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
     - name: Cache go build
       uses: actions/cache@v3
       with:
@@ -72,7 +71,7 @@ jobs:
       shell: bash
       run: |
         sudo apt install qemu-user-static util-linux gdisk e2fsprogs
-    - name: install packer and plugins
+    - name: install packer plugins
       shell: bash
       run: |
         ./build-packer.sh ${{ env.PACKER_VERSION }}
@@ -85,7 +84,7 @@ jobs:
     - name: run packer
       shell: bash
       run: |
-        sudo ./packer build -var-file ${{ matrix.host.path }} packer.json
+        sudo packer build -var-file ${{ matrix.host.path }} packer.json
 
     # pack
     - name: archive + compress image
