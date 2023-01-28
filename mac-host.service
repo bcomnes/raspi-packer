@@ -1,6 +1,6 @@
 [Unit]
 Description=set mac based hostname on first boot
-Before=network-pre.target
+After=network.target
 
 [Service]
 Type=oneshot
@@ -8,5 +8,3 @@ TimeoutSec=infinity
 ExecStart=/usr/sbin/mac-host.sh
 ExecStart=/bin/systemctl --no-reload disable %n
 
-[Install]
-RequiredBy=network-pre.target
