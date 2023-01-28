@@ -27,7 +27,7 @@
     "image_partitions": [
       {
         "name": "boot",
-        "type": "c",
+        "type": "b",
         "start_sector": "2048",
         "filesystem": "vfat",
         "size": "256M",

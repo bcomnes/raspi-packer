@@ -55,6 +55,8 @@ git commit -m 'initial commit'
 systemctl enable etckeeper.timer
 systemctl start etckeeper.timer
 
+mkscr
+
 # set up resize firstrun script
 mv /tmp/resizerootfs.service /etc/systemd/system
 chmod +x /tmp/resizerootfs
