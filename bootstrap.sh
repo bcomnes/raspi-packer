@@ -70,7 +70,7 @@ systemctl enable mac-host.service
 # Set Hostname
 # Normally we use hostnamectl, but that doesn't work in chroot
 #hostnamectl set-hostname raspi3
-echo "${hostname}" > /etc/hostname
+hostnamectl set-hostname "${hostname}"
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
@@ -80,6 +80,7 @@ pacman -S vim htop parted --noconfirm --needed
 mkdir -p /etc/systemd/resolved.conf.d
 echo '[Resolve]' > /etc/systemd/resolved.conf.d/mdns.conf
 echo 'MulticastDNS=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
+echo 'LLMNR=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
 systemctl enable systemd-resolved.service
 
 # disable password auth
