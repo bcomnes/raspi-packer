@@ -31,9 +31,7 @@ if [[ -L /etc/resolv.conf ]]; then
   mv /etc/resolv.conf /etc/resolv.conf.bk;
 fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
-pacman -Sy --noconfirm --needed
-
-pacman -S openssl systemd --noconfirm --needed
+# pacman -Syu --noconfirm --needed
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
