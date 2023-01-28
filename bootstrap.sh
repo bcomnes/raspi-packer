@@ -70,7 +70,7 @@ systemctl enable mac-host.service
 # Set Hostname
 # Normally we use hostnamectl, but that doesn't work in chroot
 #hostnamectl set-hostname raspi3
-hostnamectl set-hostname "${hostname}"
+echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
