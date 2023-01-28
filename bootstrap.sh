@@ -40,7 +40,7 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'LC_ALL=en_US.UTF-8' >> /etc/locale.conf
 
 # Etckeeper init
-pacman -S git etckeeper glibc --noconfirm --needed
+pacman -S git etckeeper glibc uboot-tools --noconfirm --needed
 
 export HOME=/root
 git config --global user.email "${git_user_email}"
@@ -55,7 +55,11 @@ git commit -m 'initial commit'
 systemctl enable etckeeper.timer
 systemctl start etckeeper.timer
 
-mkscr
+CWD=$(pwd)
+echo $CWD
+cd /boot
+mkimage -A arm -T script -O linux -d boot.txt boot.scr
+cd $CWD
 
 # set up resize firstrun script
 mv /tmp/resizerootfs.service /etc/systemd/system
