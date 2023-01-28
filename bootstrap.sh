@@ -63,8 +63,8 @@ systemctl enable resizerootfs.service
 
 # set up mac-host firstrun script
 mv /tmp/mac-host.service /etc/systemd/system
-chmod +x /tmp/mac-host.sh
-mv /tmp/mac-host.sh /usr/sbin/
+chmod +x /tmp/mac-host
+mv /tmp/mac-host /usr/sbin/
 systemctl enable mac-host.service
 
 # Set Hostname
