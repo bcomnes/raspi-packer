@@ -74,7 +74,7 @@ echo "${hostname}" > /etc/hostname
 
 # Install avahi and stuff
 # TODO: Figure out if systemd has this built in now
-pacman -S vim htop parted --noconfirm --needed
+pacman -S vim htop parted linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
 
 # Set up systemd-resolved
 mkdir -p /etc/systemd/resolved.conf.d
