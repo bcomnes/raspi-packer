@@ -5,6 +5,6 @@ After=network.target
 [Service]
 Type=oneshot
 TimeoutSec=infinity
-ExecStart=/usr/sbin/mac-host.sh
+ExecStart=/usr/sbin/mac-host
 ExecStart=/bin/systemctl --no-reload disable %n
 

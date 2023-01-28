@@ -58,8 +58,8 @@
     },
     {
       "type": "file",
-      "source": "mac-host.sh",
-      "destination": "/tmp/mac-host.sh"
+      "source": "mac-host",
+      "destination": "/tmp/mac-host"
     },
     {
       "type": "file",

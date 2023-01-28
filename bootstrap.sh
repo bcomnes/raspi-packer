@@ -93,12 +93,13 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 # create user
 useradd -m "${username}"
 usermod -aG wheel "${username}"
+usermod -aG wheel "alarm"
 # delete default user alarm:alarm
 # Comment out for debugability.
 # userdel -r alarm
 # disable root login root:root
 # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
-passwd -l root
+#passwd -l root
 
 # Setup user ssh keys
 mkdir /home/"${username}"/.ssh
