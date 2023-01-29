@@ -17,10 +17,16 @@ jobs:
         host:
         - path: ./hosts/raspi4/aarch64.json
           imgName: raspberry-pi4-aarch64.img
-        - path: ./hosts/raspi4/aarch64-alt.json
-          imgName: raspberry-pi4-aarch64-alt.img
+        - path: ./hosts/raspi4/aarch64.json
+          imgName: raspberry-pi4-aarch64-debug.img
+        - path: ./hosts/raspi4/aarch64-cm4.json
+          imgName: raspberry-pi4-aarch64-cm4.img
+        - path: ./hosts/raspi4/aarch64-cm4-debug.json
+          imgName: raspberry-pi4-aarch64-cm4-debug.img
         - path: ./hosts/raspi4/armv7.json
           imgName: raspberry-pi4-armv7.img
+        - path: ./hosts/raspi4/armv7-debug.json
+          imgName: raspberry-pi4-armv7-debug.img
         #- path: ./hosts/raspi3/aarch64.json
         #  imgName: raspberry-pi3.img
         #- path: ./hosts/raspi4/ace.json

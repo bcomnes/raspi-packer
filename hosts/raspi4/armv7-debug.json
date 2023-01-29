@@ -1,10 +1,10 @@
 {
-    "hostname": "alarm-rpi-armv7",
+    "hostname": "alarm-rpi-armv7-debug",
     "size": "4G",
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz",
     "file_unarchive_bin": "tar",
     "file_unarchive_flags": "-xzvf",
-    "img_name": "raspberry-pi4-armv7.img",
+    "img_name": "raspberry-pi4-armv7-debug.img",
     "qemu_binary": "/usr/bin/qemu-arm-static",
-    "lockdown_root": "true"
+    "lockdown_root": "false"
 }

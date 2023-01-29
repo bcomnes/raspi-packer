@@ -10,9 +10,10 @@ username="${USERNAME}"
 github_keys="${GITHUB_KEYS}"
 git_user_name="${GIT_USER_NAME}"
 git_user_email="${GIT_USER_EMAIL}"
-pi4_block="${PI4_BLOCK}"
-lockdown_root="${LOCKDOWN_ROOT}"
+pi4_alt_fstab="${PI4_ALT_FSTAB}"
 pi4_bootloader="${PI4_BOOTLOADER}"
+cm4_usb="${CM4_USB}"
+lockdown_root="${LOCKDOWN_ROOT}"
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
@@ -34,13 +35,6 @@ if [[ -L /etc/resolv.conf ]]; then
 fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
 pacman -Syyu --noconfirm --needed
-
-if [ "$pi4_block" = "true" ] ; then
-  echo 'setting up pi4 fstab'
-  cat /etc/fstab
-  sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
-  cat /etc/fstab
-fi
 
 if [ "$pi4_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
@@ -131,8 +125,20 @@ chmod 600 "/home/${username}/.ssh/authorized_keys"
 # Set up no-password sudo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
+if [ "$pi4_alt_fstab" = "true" ] ; then
+  echo 'setting up pi4 fstab'
+  cat /etc/fstab
+  sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
+  cat /etc/fstab
+fi
+
+if [ "$cm4_usb" = "true" ] ; then
+  echo '' >> /boot/config.txt
+  echo '[cm4]' >> /boot/config.txt
+  echo 'dtoverlay=dwc2,dr_mode=host' >> /boot/config.txt
+fi
+
 # restore original resolve.conf
 if [[ -L /etc/resolv.conf.bk ]]; then
   mv /etc/resolv.conf.bk /etc/resolv.conf;
 fi
-
