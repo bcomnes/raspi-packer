@@ -12,6 +12,7 @@ git_user_name="${GIT_USER_NAME}"
 git_user_email="${GIT_USER_EMAIL}"
 pi4_block="${PI4_BLOCK}"
 lockdown_root="${LOCKDOWN_ROOT}"
+pi4_bootloader="${PI4_BOOTLOADER}"
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
@@ -39,6 +40,9 @@ if [ "$pi4_block" = "true" ] ; then
   cat /etc/fstab
   sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
   cat /etc/fstab
+fi
+
+if [ "$pi4_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
   pacman -S  linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
 fi

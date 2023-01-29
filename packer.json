@@ -12,7 +12,8 @@
     "img_name": "raspberry-pi3.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static",
     "pi4_block": "false",
-    "lockdown_root": "false"
+    "lockdown_root": "false",
+    "pi4_bootloader": "false"
   },
   "builders": [{
     "type": "arm",
@@ -77,7 +78,8 @@
         "GIT_USER_NAME={{user `git_user_name`}}",
         "GIT_USER_EMAIL={{user `git_user_email`}}",
         "PI4_BLOCK={{user `pi4_block`}}",
-        "LOCKDOWN_ROOT={{user `lockdown_root`}}"
+        "LOCKDOWN_ROOT={{user `lockdown_root`}}",
+        "PI4_BOOTLOADER={{user `pi4_bootloader`}}"
       ]
     }
   ]
