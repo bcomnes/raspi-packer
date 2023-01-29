@@ -1,6 +1,8 @@
 # raspi-packer
 [![build](https://github.com/bcomnes/raspi-packer/actions/workflows/build.yml/badge.svg)](https://github.com/bcomnes/raspi-packer/actions/workflows/build.yml)
 
+![logo](./screenshots/logo.png)
+
 Build various configurations of [Arch Linux Arm](https://archlinuxarm.org) in a GitHub action using [packer](https://www.packer.io) and [mkaczanowski/packer-builder-arm](https://github.com/mkaczanowski/packer-builder-arm") into an ISO that you can flash with [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 
 Includes a [bootstrap](./boostrap.sh) script that lets you customize the image, and include first run utilities for resizing partitions or doing other first run activities. 
