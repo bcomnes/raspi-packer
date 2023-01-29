@@ -17,7 +17,7 @@ jobs:
         host:
         - path: ./hosts/raspi4/aarch64.json
           imgName: raspberry-pi4-aarch64.img
-        - path: ./hosts/raspi4/aarch64.json
+        - path: ./hosts/raspi4/aarch64-debug.json
           imgName: raspberry-pi4-aarch64-debug.img
         - path: ./hosts/raspi4/aarch64-cm4.json
           imgName: raspberry-pi4-aarch64-cm4.img
