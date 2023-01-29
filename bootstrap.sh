@@ -11,6 +11,7 @@ github_keys="${GITHUB_KEYS}"
 git_user_name="${GIT_USER_NAME}"
 git_user_email="${GIT_USER_EMAIL}"
 pi4_block="${PI4_BLOCK}"
+lockdown_root="${LOCKDOWN_ROOT}"
 
 # Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
@@ -31,7 +32,7 @@ if [[ -L /etc/resolv.conf ]]; then
   mv /etc/resolv.conf /etc/resolv.conf.bk;
 fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
-pacman -Syu --noconfirm --needed
+pacman -Syyu --noconfirm --needed
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
@@ -40,7 +41,7 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'LC_ALL=en_US.UTF-8' >> /etc/locale.conf
 
 # Etckeeper init
-pacman -S git etckeeper glibc uboot-tools --noconfirm --needed
+pacman -S git etckeeper glibc --noconfirm --needed
 
 export HOME=/root
 git config --global user.email "${git_user_email}"
@@ -54,12 +55,6 @@ git commit -m 'initial commit'
 
 systemctl enable etckeeper.timer
 systemctl start etckeeper.timer
-
-CWD=$(pwd)
-echo $CWD
-cd /boot
-mkimage -A arm -T script -O linux -d boot.txt boot.scr
-cd $CWD
 
 # set up resize firstrun script
 mv /tmp/resizerootfs.service /etc/systemd/system
@@ -78,15 +73,14 @@ systemctl enable mac-host.service
 #hostnamectl set-hostname raspi3
 echo "${hostname}" > /etc/hostname
 
-# Install avahi and stuff
-# TODO: Figure out if systemd has this built in now
-pacman -S vim htop parted --noconfirm --needed
+# Install stuff
+pacman -S vim htop parted sudo --noconfirm --needed
 
-# Set up systemd-resolved
+# Set up systemd-resolved  (mDNS)
 mkdir -p /etc/systemd/resolved.conf.d
 echo '[Resolve]' > /etc/systemd/resolved.conf.d/mdns.conf
 echo 'MulticastDNS=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
-echo 'LLMNR=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
+# echo 'LLMNR=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
 systemctl enable systemd-resolved.service
 
 # disable password auth
@@ -100,13 +94,17 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 # create user
 useradd -m "${username}"
 usermod -aG wheel "${username}"
-usermod -aG wheel "alarm"
-# delete default user alarm:alarm
-# Comment out for debugability.
-# userdel -r alarm
-# disable root login root:root
-# https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
-#passwd -l root
+
+if [ "$lockdown_root" = "true" ] ; then
+  # delete default user alarm:alarm
+  userdel -r alarm
+  # disable root login root:root
+  # https://wiki.archlinux.org/index.php/Sudo#Disable_root_login
+  passwd -l root
+else
+  # add alarm to sudo if its not deleted
+  usermod -aG wheel "alarm"
+fi
 
 # Setup user ssh keys
 mkdir /home/"${username}"/.ssh
@@ -117,13 +115,16 @@ chmod go-w "/home/${username}"
 chmod 700 "/home/${username}/.ssh"
 chmod 600 "/home/${username}/.ssh/authorized_keys"
 
-pacman -S sudo --noconfirm --needed
 # Set up no-password sudo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
 if [ "$pi4_block" = "true" ] ; then
   echo 'setting up pi4 fstab'
+  cat /etc/fstab
   sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
+  cat /etc/fstab
+  pacman -R linux-aarch64 --noconfirm
+  pacman -S  linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
 fi
 
 # restore original resolve.conf

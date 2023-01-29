@@ -11,7 +11,8 @@
     "file_unarchive_flags": "-xpf",
     "img_name": "raspberry-pi3.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static",
-    "pi4_block": "false"
+    "pi4_block": "false",
+    "lockdown_root": "false"
   },
   "builders": [{
     "type": "arm",
@@ -75,7 +76,8 @@
         "GITHUB_KEYS={{user `github_keys`}}",
         "GIT_USER_NAME={{user `git_user_name`}}",
         "GIT_USER_EMAIL={{user `git_user_email`}}",
-        "PI4_BLOCK={{user `pi4_block`}}"
+        "PI4_BLOCK={{user `pi4_block`}}",
+        "LOCKDOWN_ROOT={{user `lockdown_root`}}"
       ]
     }
   ]
