@@ -34,6 +34,15 @@ fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
 pacman -Syyu --noconfirm --needed
 
+if [ "$pi4_block" = "true" ] ; then
+  echo 'setting up pi4 fstab'
+  cat /etc/fstab
+  sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
+  cat /etc/fstab
+  pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
+  pacman -S  linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
+fi
+
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
@@ -117,15 +126,6 @@ chmod 600 "/home/${username}/.ssh/authorized_keys"
 
 # Set up no-password sudo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-
-if [ "$pi4_block" = "true" ] ; then
-  echo 'setting up pi4 fstab'
-  cat /etc/fstab
-  sed -i 's/mmcblk0/mmcblk1/g' /etc/fstab
-  cat /etc/fstab
-  pacman -R linux-aarch64 --noconfirm
-  pacman -S  linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
-fi
 
 # restore original resolve.conf
 if [[ -L /etc/resolv.conf.bk ]]; then
