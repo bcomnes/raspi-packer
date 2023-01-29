@@ -13,6 +13,10 @@ Bootstrapping arch arm is non-trivial and tedious. This lets you automate away t
 
 Push changes to the repo, and images are built on the push event. If the build succeeds, you can find the images as artifacts located on the action run. 
 
+- hosts: this folder has various packer entry points for various hosts builds. Overlays over the packer.json file settings.
+- bootstrap.sh: The script that runs to build the image
+- packer.json: The base packer configuration.
+
 ### Can I use it?
 
 Anyone can use this, though the customizations are pretty specific for my own use case. You are better off forking the repo and making whatever modifications you want to your own build pipeline.
