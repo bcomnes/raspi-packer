@@ -87,7 +87,10 @@ pacman -S vim htop parted sudo --noconfirm --needed
 mkdir -p /etc/systemd/resolved.conf.d
 echo '[Resolve]' > /etc/systemd/resolved.conf.d/mdns.conf
 echo 'MulticastDNS=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
-# echo 'LLMNR=yes' >> /etc/systemd/resolved.conf.d/mdns.conf
+mkdir -p /etc/systemd/network/en.network.d
+echo '[Network]' > /etc/systemd/network/en.network.d/mdns.conf
+echo  'MulticastDNS=yes' >> /etc/systemd/network/en.network.d/mdns.conf
+
 systemctl enable systemd-resolved.service
 
 # disable password auth
