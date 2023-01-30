@@ -83,6 +83,21 @@ echo "${hostname}" > /etc/hostname
 # Install stuff
 pacman -S vim htop parted sudo --noconfirm --needed
 
+# Sometiems the network file is missing for some unknown reason
+if [ ! -f "/etc/systemd/network/en.network" ] ; then
+  echo 'Fixing eth -> en network file'
+  touch /etc/systemd/network/en.network
+  cat >/etc/systemd/network/en.network <<EOL
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+DNSSEC=no
+EOL
+
+fi
+
 # Set up systemd-resolved  (mDNS)
 mkdir -p /etc/systemd/resolved.conf.d
 echo '[Resolve]' > /etc/systemd/resolved.conf.d/mdns.conf
