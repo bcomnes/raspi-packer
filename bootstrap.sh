@@ -38,7 +38,7 @@ pacman -Syyu --noconfirm --needed
 
 if [ "$pi4_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
-  pacman -S  linux-rpi raspberrypi-bootloader firmware-raspberrypi --noconfirm --needed
+  pacman -S linux-rpi raspberrypi-bootloader firmware-raspberrypi raspberrypi-firmware --noconfirm --needed
 fi
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
@@ -119,6 +119,7 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 # create user
 useradd -m "${username}"
 usermod -aG wheel "${username}"
+usermod -aG video "${username}"
 
 if [ "$lockdown_root" = "true" ] ; then
   # delete default user alarm:alarm
@@ -130,6 +131,10 @@ else
   # add alarm to sudo if its not deleted
   usermod -aG wheel "alarm"
 fi
+
+# copy the throttle script
+mv /tmp/throttle.sh "/home/${username}/throttle.sh"
+chmod +x "/home/${username}/throttle.sh"
 
 # Setup user ssh keys
 mkdir /home/"${username}"/.ssh

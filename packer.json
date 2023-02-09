@@ -70,6 +70,11 @@
       "destination": "/tmp/mac-host.service"
     },
     {
+      "type": "file",
+      "source": "throttle.sh",
+      "destination": "/tmp/throttle.sh"
+    },
+    {
       "type": "shell",
       "script": "bootstrap.sh",
       "environment_vars": [
