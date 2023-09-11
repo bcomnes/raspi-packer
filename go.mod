@@ -2,7 +2,7 @@ module github.com/bcomnes/raspi-packer
 
 go 1.19
 
-require github.com/mkaczanowski/packer-builder-arm v1.0.7
+require github.com/mkaczanowski/packer-builder-arm v1.0.8
 
 require (
 	cloud.google.com/go v0.107.0 // indirect
@@ -35,7 +35,7 @@ require (
 	github.com/hashicorp/consul/api v1.12.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
-	github.com/hashicorp/go-getter v1.7.1 // indirect
+	github.com/hashicorp/go-getter v1.7.2 // indirect
 	github.com/hashicorp/go-getter/gcs/v2 v2.2.0 // indirect
 	github.com/hashicorp/go-getter/s3/v2 v2.2.0 // indirect
 	github.com/hashicorp/go-getter/v2 v2.2.0 // indirect
@@ -54,8 +54,8 @@ require (
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/hashicorp/hcl/v2 v2.14.1 // indirect
-	github.com/hashicorp/packer-plugin-sdk v0.4.0 // indirect
+	github.com/hashicorp/hcl/v2 v2.16.2 // indirect
+	github.com/hashicorp/packer-plugin-sdk v0.5.1 // indirect
 	github.com/hashicorp/serf v0.9.8 // indirect
 	github.com/hashicorp/vault/api v1.5.0 // indirect
 	github.com/hashicorp/vault/sdk v0.4.1 // indirect
@@ -93,7 +93,7 @@ require (
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
-	github.com/zclconf/go-cty v1.10.0 // indirect
+	github.com/zclconf/go-cty v1.12.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/crypto v0.0.0-20220517005047-85d78b3ac167 // indirect
