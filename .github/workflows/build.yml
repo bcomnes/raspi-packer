@@ -4,8 +4,8 @@ on: [push]
 
 env:
   PACKER_VERSION: latest
-  LIBARCHIVE_VERSION: 3.6.2
-  GO_VERSION: '^1.19.5'
+  LIBARCHIVE_VERSION: 3.7.2
+  GO_VERSION: '^1.21.6'
   PACKER_CACHE_DIR: ~/packer_cache/
 
 jobs:
@@ -13,8 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         host:
+        - path: ./hosts/raspi5/aarch64.json
+          imgName: raspberry-pi5-aarch64.img
+        - path: ./hosts/raspi5/aarch64-debug.json
+          imgName: raspberry-pi5-aarch64-debug.img
         - path: ./hosts/raspi4/aarch64.json
           imgName: raspberry-pi4-aarch64.img
         - path: ./hosts/raspi4/aarch64-debug.json
@@ -80,6 +85,7 @@ jobs:
     - name: install deps
       shell: bash
       run: |
+        sudo apt-get update
         sudo apt install qemu-user-static util-linux gdisk e2fsprogs
     - name: install packer plugins
       shell: bash

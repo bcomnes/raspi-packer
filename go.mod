@@ -1,6 +1,6 @@
 module github.com/bcomnes/raspi-packer
 
-go 1.19
+go 1.21.6
 
 require github.com/mkaczanowski/packer-builder-arm v1.0.9
 
@@ -108,3 +108,5 @@ require (
 	google.golang.org/grpc v1.56.3 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 )
+
+replace github.com/zclconf/go-cty => github.com/nywilken/go-cty v1.13.3

@@ -38,7 +38,12 @@ pacman -Syyu --noconfirm --needed
 
 if [ "$pi4_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
-  pacman -S linux-rpi raspberrypi-bootloader firmware-raspberrypi raspberrypi-firmware --noconfirm --needed
+  pacman -S linux-rpi raspberrypi-bootloader firmware-raspberrypi raspberrypi-utils --noconfirm --needed
+fi
+
+if [ "$pi5_bootloader" = "true" ] ; then
+  pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
+  pacman -S linux-rpi-16k raspberrypi-bootloader firmware-raspberrypi raspberrypi-utils --noconfirm --needed
 fi
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
