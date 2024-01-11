@@ -12,6 +12,7 @@ git_user_name="${GIT_USER_NAME}"
 git_user_email="${GIT_USER_EMAIL}"
 pi4_alt_fstab="${PI4_ALT_FSTAB}"
 pi4_bootloader="${PI4_BOOTLOADER}"
+pi5_bootloader="${PI5_BOOTLOADER}"
 cm4_usb="${CM4_USB}"
 lockdown_root="${LOCKDOWN_ROOT}"
 
@@ -35,6 +36,7 @@ if [[ -L /etc/resolv.conf ]]; then
 fi
 echo 'nameserver 8.8.8.8' > /etc/resolv.conf;
 pacman -Syyu --noconfirm --needed
+gpgconf --kill all
 
 if [ "$pi4_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
@@ -43,7 +45,7 @@ fi
 
 if [ "$pi5_bootloader" = "true" ] ; then
   pacman -R linux-aarch64 uboot-raspberrypi --noconfirm
-  pacman -S linux-rpi raspberrypi-bootloader firmware-raspberrypi raspberrypi-utils --noconfirm --needed
+  pacman -S linux-rpi-16k raspberrypi-bootloader firmware-raspberrypi raspberrypi-utils --noconfirm --needed
 fi
 
 # Set up localization https://wiki.archlinux.org/index.php/Installation_guide#Localization
