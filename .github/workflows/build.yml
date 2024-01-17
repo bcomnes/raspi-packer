@@ -62,17 +62,17 @@ jobs:
         echo "::set-output name=date::$(date +'%m-%Y')"
       id: cache
     - name: Cache libarchive build
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ./libarchive-${{env.LIBARCHIVE_VERSION}}
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-libarchive-${{env.LIBARCHIVE_VERSION}}
     - name: Cache images
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ env.PACKER_CACHE_DIR }}
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-${{ steps.cache.outputs.date }}-packer_cache-1
     - name: Cache go build
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/go-build
         key: ${{ runner.os }}-${{ matrix.host.imgName }}-go-build
