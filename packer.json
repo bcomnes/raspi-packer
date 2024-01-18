@@ -1,21 +1,13 @@
 {
   "variables": {
-    "hostname": "alarm",
-    "username": "bret",
-    "github_keys": "https://github.com/bcomnes.keys",
-    "git_user_email": "bcomnes@gmail.com",
-    "git_user_name": "Bret Comnes",
-    "size": "2G",
-    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
-    "file_unarchive_bin": "bsdtar",
-    "file_unarchive_flags": "-xpf",
-    "img_name": "raspberry-pi3.img",
+    "hostname": "alarm-rpi-aarch64",
+    "size": "4G",
+    "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz",
+    "img_name": "raspberry-pi4-aarch64.img",
     "qemu_binary": "/usr/bin/qemu-aarch64-static",
-    "pi4_alt_fstab": "false",
-    "lockdown_root": "false",
-    "pi4_bootloader": "false",
-    "pi5_bootloader": "false",
-    "cm4_usb": "false"
+    "pi4_alt_fstab": "true",
+    "lockdown_root": "true",
+    "pi4_bootloader": "true"
   },
   "builders": [{
     "type": "arm",
