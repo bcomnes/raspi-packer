@@ -52,7 +52,7 @@ jobs:
         cache: true
 
     - name: Setup `packer`
-      uses: hashicorp/setup-packer@v2.0.1
+      uses: hashicorp/setup-packer@v3.0.0
       id: setup
       with:
         version: ${{ env.PACKER_VERSION }} # or `latest`
