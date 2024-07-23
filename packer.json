@@ -18,7 +18,7 @@
     "cm4_usb": "false"
   },
   "builders": [{
-    "type": "arm",
+    "type": "cross",
     "file_urls" : ["{{user `img_url`}}"],
     "file_checksum_url": "{{user `img_url`}}.md5",
     "file_checksum_type": "md5",

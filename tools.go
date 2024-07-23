@@ -1,3 +1,4 @@
+//go:build tools
 // +build tools
 
 package tools
@@ -6,5 +7,5 @@ package tools
 // for more details
 
 import (
-	_ "github.com/mkaczanowski/packer-builder-arm"
+	_ "github.com/michalfita/packer-plugin-cross"
 )

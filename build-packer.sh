@@ -17,8 +17,9 @@ PACKER_VERSION="$1"
 #./packer version
 #echo "Finished building packer"
 
-echo "Building github.com/mkaczanowski/packer-builder-arm"
+echo "Building github.com/michalfita/packer-plugin-cross"
 # Version tracked in go.mod + tools.go
-go build -v -o packer-builder-arm github.com/mkaczanowski/packer-builder-arm
-echo "Finished building github.com/mkaczanowski/packer-builder-arm"
+go build -v -o packer-plugin-cross github.com/michalfita/packer-plugin-cross
+packer plugins install -path packer-plugin-cross github.com/michalfita/cross 
+echo "Finished building github.com/michalfita/packer-plugin-cross"
 

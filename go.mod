@@ -2,7 +2,7 @@ module github.com/bcomnes/raspi-packer
 
 go 1.21.6
 
-require github.com/mkaczanowski/packer-builder-arm v1.0.9
+require github.com/michalfita/packer-plugin-cross v1.1.3
 
 require (
 	cloud.google.com/go v0.110.0 // indirect
