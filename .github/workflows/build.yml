@@ -16,6 +16,10 @@ jobs:
       fail-fast: false
       matrix:
         host:
+        - path: ./hosts/raspi5/aarch64-cm5.json
+          imgName: raspberry-pi5-aarch64-cm5.img
+        - path: ./hosts/raspi5/aarch64-cm5-debug.json
+          imgName: raspberry-pi5-aarch64-cm5-debug.img
         - path: ./hosts/raspi5/aarch64.json
           imgName: raspberry-pi5-aarch64.img
         - path: ./hosts/raspi5/aarch64-debug.json

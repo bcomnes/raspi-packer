@@ -15,7 +15,8 @@
     "lockdown_root": "false",
     "pi4_bootloader": "false",
     "pi5_bootloader": "false",
-    "cm4_usb": "false"
+    "cm4_usb": "false",
+    "cm5_usb": "false"
   },
   "builders": [{
     "type": "cross",
@@ -88,7 +89,8 @@
         "LOCKDOWN_ROOT={{user `lockdown_root`}}",
         "PI4_BOOTLOADER={{user `pi4_bootloader`}}",
         "PI5_BOOTLOADER={{user `pi5_bootloader`}}",
-        "CM4_USB={{user `cm4_usb`}}"
+        "CM4_USB={{user `cm4_usb`}}",
+        "CM5_USB={{user `cm4_usb`}}"
       ]
     }
   ]

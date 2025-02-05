@@ -14,9 +14,10 @@ pi4_alt_fstab="${PI4_ALT_FSTAB}"
 pi4_bootloader="${PI4_BOOTLOADER}"
 pi5_bootloader="${PI5_BOOTLOADER}"
 cm4_usb="${CM4_USB}"
+cm5_usb="${CM5_USB}"
 lockdown_root="${LOCKDOWN_ROOT}"
 
-# Recomended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
+# Recommended in https://wiki.archlinux.org/index.php/Chroot#Using_chroot
 # Doesn't seem to do much
 source /etc/profile
 # Debug info
@@ -165,6 +166,12 @@ fi
 if [ "$cm4_usb" = "true" ] ; then
   echo '' >> /boot/config.txt
   echo '[cm4]' >> /boot/config.txt
+  echo 'dtoverlay=dwc2,dr_mode=host' >> /boot/config.txt
+fi
+
+if [ "$cm5_usb" = "true" ] ; then
+  echo '' >> /boot/config.txt
+  echo '[cm5]' >> /boot/config.txt
   echo 'dtoverlay=dwc2,dr_mode=host' >> /boot/config.txt
 fi
 
