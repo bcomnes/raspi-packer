@@ -43,4 +43,4 @@ echo -n "   Now: "
 echo -n "   Run: "
 ((($STATUS&HAS_CAPPED)!=0)) && echo "${BAD}" || echo "${GOOD}"
 
-/opt/vc/bin/vcgencmd measure_temp
+vcgencmd measure_temp
