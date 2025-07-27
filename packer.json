@@ -1,10 +1,10 @@
 {
   "variables": {
     "hostname": "alarm",
-    "username": "bret",
-    "github_keys": "https://github.com/bcomnes.keys",
-    "git_user_email": "bcomnes@gmail.com",
-    "git_user_name": "Bret Comnes",
+    "username": "rchatrath7",
+    "github_keys": "https://github.com/rchatrath7.keys",
+    "git_user_email": "rchatrath7@gmail.com",
+    "git_user_name": "Rakesh Chatrath",
     "size": "2G",
     "img_url": "http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz",
     "file_unarchive_bin": "bsdtar",
