@@ -49,7 +49,7 @@ jobs:
     # CODE
     - uses: actions/checkout@v5
     # TOOLS
-    - uses: actions/setup-go@v5
+    - uses: actions/setup-go@v6
       with:
         go-version: ${{ env.GO_VERSION }}
         check-latest: true
