@@ -47,7 +47,7 @@ jobs:
 
     steps:
     # CODE
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     # TOOLS
     - uses: actions/setup-go@v6
       with:
